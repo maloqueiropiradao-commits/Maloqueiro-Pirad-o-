@@ -1,1 +1,53 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Maloqueiro Piradão - Oficial</title>
+    <style>
+        body { background-color: #121212; color: #fff; font-family: Arial, sans-serif; margin: 0; }
+        .header { background: #1a1a1a; padding: 20px; text-align: center; border-bottom: 2px solid #7c3aed; }
+        .banner { width: 100%; height: 200px; object-fit: cover; }
+        .notification { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 20px; border-radius: 8px; display: flex; align-items: center; gap: 15px; }
+        .ep-list { margin: 20px; }
+        .ep-item { background: #1a1a1a; padding: 10px; margin-bottom: 5px; border-bottom: 1px solid #333; }
+    </style>
+</head>
+<body>
+
+    <!-- Banner Principal -->
+    <div class="header">
+        <img src="https://images2.imgbox.com/39/fe/LwD6bA3m_o.png" class="banner" alt="Banner Maloqueiro">
+    </div>
+
+    <!-- Notificação -->
+    <div class="notification">
+        <img src="https://i.imgur.com/G4Yt5Yf.png" style="width: 50px; border-radius: 50%;">
+        <div>
+            <p>E aí, meu povo! 😄 Quer ficar sabendo na hora quando sair episódio novo?</p>
+            <button>Não, valeu.</button> <button style="background: #7c3aed; color: white;">Sim, eu quero</button>
+        </div>
+    </div>
+
+    <!-- Lista de Episódios -->
+    <div class="ep-list">
+        <h2>Temporada 1</h2>
+        <div id="eps"></div>
+    </div>
+
+    <script>
+        const epis = [
+            "13 de Abril de 2024", "14 de Abril de 2024", "15 de Abril de 2024", "16 de Abril de 2024", 
+            "17 de Abril de 2024", "18 de Abril de 2024", "19 de Abril de 2024", "20 de Abril de 2024", 
+            "21 de Abril de 2024", "23 de Abril de 2024", "24 de Abril de 2024", "25 de Abril de 2024", 
+            "26 de Abril de 2024", "27 de Abril de 2024", "28 de Abril de 2024", "29 de Abril de 2024", 
+            "30 de Abril de 2024", "1 de Maio de 2024", "2 de Maio de 2024", "3 de Maio de 2024", 
+            "4 de Maio de 2024", "5 de Maio de 2024", "6 de Maio de 2024", "7 de Maio de 2024"
+        ];
+        const container = document.getElementById('eps');
+        epis.forEach((data, i) => {
+            container.innerHTML += `<div class="ep-item"><strong>Episódio ${i+1}</strong><br><small>${data}</small></div>`;
+        });
+    </script>
+</body>
+</html>
