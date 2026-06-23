@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maloqueiro Piradão - Plataforma de Vídeos</title>
+    <title>Maloqueiro Piradão - 1ª Temporada</title>
     <link rel="icon" href="https://i.ibb.co/zTXbHHxv/XRecorder-Edited-20260621-01.jpg" type="image/x-icon">
     <style>
         body {
@@ -51,7 +51,7 @@
             75% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        /* INTERFACE E TOPO */
+        /* TOPO E MENU */
         header {
             background-color: #1a162b;
             padding: 15px;
@@ -85,84 +85,136 @@
             font-size: 2rem;
         }
 
-        /* CONTEÚDO PRINCIPAL */
         .container {
             max-width: 900px;
             margin: 20px auto;
             padding: 10px;
+            box-sizing: border-box;
         }
 
-        /* PLAYER DE VÍDEO COMPLETO (Baseado no print XRecorder_20260621_03.jpg) */
-        .video-player-section {
-            background-color: #1a162b;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-            margin-bottom: 25px;
-            display: none; /* Inicia oculto até clicar em um ep */
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* Proporção 16:9 */
-            background-color: #000;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .controls-nav {
-            display: flex;
-            background-color: #110e1c;
-            border-top: 2px solid #25203b;
-        }
-        .nav-btn {
-            flex: 1;
-            padding: 15px;
-            background: none;
-            border: none;
+        /* 1. SEÇÃO DA TELA INICIAL (IGUAL AO VÍDEO) */
+        .secao-titulo {
+            text-align: left;
             color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .nav-btn:hover { background-color: #25203b; }
-        .nav-btn:disabled { color: #444; cursor: not-allowed; }
-        .nav-center-line { border-left: 1px solid #25203b; border-right: 1px solid #25203b; }
-
-        .video-info-box {
-            padding: 15px;
-            text-align: left;
-        }
-        .video-title { color: #ffcc00; font-size: 1.5rem; margin: 0 0 5px 0; }
-        .video-date { color: #888; font-size: 0.9rem; }
-
-        /* LISTA ESTILIZADA DE EPISÓDIOS (Baseado no print XRecorder_20260619_03.jpg) */
-        .section-title {
-            text-align: left;
-            color: #ffcc00;
             border-left: 4px solid #ffcc00;
             padding-left: 10px;
             font-size: 1.4rem;
-            margin: 20px 0;
+            margin: 25px 0 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .temporada-header {
-            background-color: #ffcc00;
-            color: #000;
+        .btn-ver-mais {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            font-size: 0.75rem;
             font-weight: bold;
-            padding: 12px;
-            text-align: left;
-            border-radius: 6px 6px 0 0;
-            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
         }
-        .ep-lista {
+        .grid-destaques {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+        }
+        .card-anime {
             background-color: #1a162b;
-            border-radius: 0 0 6px 6px;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+            text-align: left;
+        }
+        .card-anime:hover { transform: scale(1.03); }
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* Proporção de poster vertical */
+        }
+        .card-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .card-nota {
+            position: absolute;
+            bottom: 5px; right: 5px;
+            background-color: rgba(0,0,0,0.7);
+            color: #ffcc00;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .card-titulo {
+            padding: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 2. SEÇÃO DE DETALHES (IGUAL AO MOMENTO 0:02 DO VÍDEO) */
+        #secaoDetalhes { display: none; }
+        .detalhes-topo {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            flex-wrap: wrap;
+        }
+        .detalhes-poster {
+            width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+        }
+        .detalhes-info { flex: 1; min-width: 250px; }
+        .detalhes-titulo-principal { font-size: 2rem; color: #fff; margin: 0 0 10px 0; }
+        .detalhes-ano { color: #aaa; font-size: 1rem; margin-bottom: 10px; }
+        .detalhes-nota {
+            background-color: #1a162b;
+            color: #ffcc00;
+            display: inline-block;
+            padding: 5px 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border: 1px solid #ffcc00;
+        }
+        .detalhes-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .tag {
+            background-color: #25203b;
+            color: #ccc;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid #3d355c;
+        }
+        .tag.dublado { background-color: #ff3366; color: #fff; border: none; }
+        .detalhes-sinopse { font-size: 1rem; line-height: 1.6; color: #ddd; }
+
+        /* LISTA COMPACTA DE EPISÓDIOS */
+        .temporada-tab-container { display: flex; margin-top: 30px; }
+        .tab-temporada {
+            background-color: #ff3366;
+            color: white;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 6px 6px 0 0;
+            font-size: 1rem;
+        }
+        .ep-lista-bloco {
+            background-color: #1a162b;
+            border-radius: 0 6px 6px 6px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
         }
         .ep-item {
             display: flex;
@@ -175,8 +227,7 @@
         }
         .ep-item:hover { background-color: #25203b; }
         .ep-thumb-placeholder {
-            width: 100px;
-            height: 60px;
+            width: 100px; height: 60px;
             background-color: #2b2640;
             border-radius: 4px;
             margin-right: 15px;
@@ -186,28 +237,47 @@
             font-size: 0.8rem;
             color: #ffcc00;
             font-weight: bold;
+            flex-shrink: 0;
         }
         .ep-details { flex: 1; }
-        .ep-name { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 4px; }
+        .ep-name { font-size: 1.05rem; font-weight: bold; color: #fff; margin-bottom: 4px; }
         .ep-date { font-size: 0.85rem; color: #aaa; }
 
-        /* TELA INICIAL COM O POSTER */
-        .home-poster-section {
+        /* 3. PLAYER DE VÍDEO COMPLETO E FUNCIONAL (00:03 DO SEU PRINT ORIGINAL) */
+        #secaoPlayer { display: none; margin-bottom: 30px; }
+        .video-wrapper {
             background-color: #1a162b;
-            padding: 20px;
             border-radius: 12px;
+            overflow: hidden;
             box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-            cursor: pointer;
-            transition: transform 0.2s;
         }
-        .home-poster-section:hover { transform: scale(1.01); }
-        .poster-main { width: 100%; max-width: 450px; border-radius: 10px; }
+        .video-iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Proporção 16:9 */
+            background-color: #000;
+        }
+        .video-iframe-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+        .controls-nav { display: flex; background-color: #110e1c; border-top: 2px solid #25203b; }
+        .nav-btn {
+            flex: 1; padding: 15px; background: none; border: none;
+            color: #fff; font-size: 1.3rem; cursor: pointer; transition: background 0.2s;
+        }
+        .nav-btn:hover { background-color: #25203b; }
+        .nav-btn:disabled { color: #444; cursor: not-allowed; }
+        .nav-center-line { border-left: 1px solid #25203b; border-right: 1px solid #25203b; }
+        .video-info-box { padding: 15px; text-align: left; }
+        .video-title { color: #ffcc00; font-size: 1.4rem; margin: 0 0 5px 0; }
+        .video-date { color: #888; font-size: 0.9rem; }
 
-        /* AVISO FLUTUANTE DE NOTIFICAÇÃO */
+        /* POP-UP DE AVISO COM ANIMAÇÃO INVERSA */
         .aviso-container {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
+            bottom: 20px; left: 50%;
             transform: translateX(-50%);
             background-color: #141124;
             border: 2px solid #ffcc00;
@@ -218,8 +288,7 @@
             gap: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             z-index: 1000;
-            width: 90%;
-            max-width: 500px;
+            width: 90%; max-width: 500px;
             box-sizing: border-box;
             animation: entrarAviso 0.6s ease-out forwards;
         }
@@ -234,19 +303,18 @@
         @keyframes entrarAviso { from { opacity: 0; transform: translate(-50%, 40px); } to { opacity: 1; transform: translate(-50%, 0); } }
         @keyframes sairAviso { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, 40px); } }
 
-        footer { text-align: center; padding: 20px; color: #555; font-size: 0.85rem; margin-top: 30px; }
+        footer { text-align: center; padding: 25px; color: #555; font-size: 0.85rem; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-    <!-- 6 SEGUNDOS DO BICHINHO ROXO RODANDO E PULANDO -->
     <div id="splash-screen">
         <div class="boneco-roxo"></div>
         <div class="splash-texto">MALOQUEIRO PIRADÃO</div>
     </div>
 
     <header>
-        <button class="menu-btn" onclick="scrollToEpisodes()">☰</button>
+        <button class="menu-btn" onclick="voltarParaHome()">☰</button>
         <div class="banner-container">
             <img src="https://i.ibb.co/zH6Rcmjw/XRecorder-Edited-20260621-04.jpg" alt="Banner" class="banner">
         </div>
@@ -255,38 +323,69 @@
 
     <div class="container">
 
-        <!-- PLAYER COMPLETO DE EPISÓDIOS (OCULTO ATÉ O CLIQUE) -->
-        <section class="video-player-section" id="playerSection">
-            <div class="video-container">
-                <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <section id="secaoHome">
+            <div class="secao-titulo"><span>Animes Online</span><button class="btn-ver-mais">VER MAIS</button></div>
+            <div class="grid-destaques">
+                <div class="card-anime" onclick="abrirDetalhes()">
+                    <div class="card-img-wrapper">
+                        <img src="https://i.ibb.co/RT5Zkxr0/1722073076111.png" alt="Maloqueiro Piradão" class="card-img" onerror="this.src='https://i.ibb.co/RT5Zkxr0/1782073076111.png'">
+                        <div class="card-nota">★ 7.4</div>
+                    </div>
+                    <div class="card-titulo">Maloqueiro Piradão</div>
+                </div>
             </div>
-            <div class="controls-nav">
-                <button class="nav-btn" id="prevBtn" onclick="navegarEp(-1)">◀ Voltar</button>
-                <button class="nav-btn nav-center-line" onclick="scrollToEpisodes()">☰ Menu</button>
-                <button class="nav-btn" id="nextBtn" onclick="navegarEp(1)">Avançar ▶</button>
-            </div>
-            <div class="video-info-box">
-                <h3 class="video-title" id="playerTitle">Selecione um Episódio</h3>
-                <div class="video-date" id="playerDate"></div>
+
+            <div class="secao-titulo"><span>Últimos Episódios</span><button class="btn-ver-mais">VER MAIS</button></div>
+            <div class="grid-destaques">
+                <div class="card-anime" onclick="abrirDetalhes(); carregarEpisodio(9);">
+                    <div class="card-img-wrapper">
+                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="card-img">
+                        <div class="card-nota">Ep 10</div>
+                    </div>
+                    <div class="card-titulo">Episódio 10 lançado!</div>
+                </div>
             </div>
         </section>
 
-        <!-- SEÇÃO INICIAL: POSTER PRINCIPAL -->
-        <section class="home-poster-section" id="homePoster" onclick="scrollToEpisodes()">
-            <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" alt="Poster da Série" class="poster-main">
-            <p style="font-size: 1.1rem; color: #ffcc00; font-weight: bold; margin-top: 15px;">👉 CLIQUE NO PÔSTER PARA VER A LISTA DE EPISÓDIOS!</p>
+        <section id="secaoPlayer">
+            <div class="video-wrapper">
+                <div class="video-iframe-container">
+                    <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="controls-nav">
+                    <button class="nav-btn" id="prevBtn" onclick="navegarEp(-1)">◀ Voltar</button>
+                    <button class="nav-btn nav-center-line" onclick="focarListaEpisodios()">☰ Lista</button>
+                    <button class="nav-btn" id="nextBtn" onclick="navegarEp(1)">Avançar ▶</button>
+                </div>
+                <div class="video-info-box">
+                    <h3 class="video-title" id="playerTitle">Título do Episódio</h3>
+                    <div class="video-date" id="playerDate">Data</div>
+                </div>
+            </div>
         </section>
 
-        <!-- LISTA COMPLETA DE TEMPORADAS E EPISÓDIOS -->
-        <h2 class="section-title" id="listaEpisodiosTitulo">Temporadas e Episódios</h2>
-        <div class="temporada-header">Temporada 28</div>
-        <div class="ep-lista" id="listaEpisodiosContainer">
-            <!-- Gerado via JavaScript para manter tudo 100% integrado -->
-        </div>
+        <section id="secaoDetalhes">
+            <div class="detalhes-topo">
+                <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" alt="Poster" class="detalhes-poster">
+                <div class="detalhes-info">
+                    <h2 class="detalhes-titulo-principal">Maloqueiro Piradão</h2>
+                    <div class="detalhes-ano">2024</div>
+                    <div class="detalhes-nota">★ 7.4</div>
+                    <div class="detalhes-tags">
+                        <span class="tag">Ação</span><span class="tag">Comédia</span><span class="tag dublado">Dublado</span><span class="tag">Aventura</span>
+                    </div>
+                    <p class="detalhes-sinopse">Prepare-se para curtir as loucuras e aventuras mais bombásticas da Temporada 1! Muita diversão, irreverência e momentos inesquecíveis aguardam você nesta produção espetacular.</p>
+                </div>
+            </div>
+
+            <div class="temporada-tab-container">
+                <div class="tab-temporada">Temporada 1</div>
+            </div>
+            <div class="ep-lista-bloco" id="listaEpisodiosContainer"></div>
+        </section>
 
     </div>
 
-    <!-- CAIXA DE AVISO POP-UP -->
     <div class="aviso-container" id="caixaAviso" style="display: none;">
         <img src="https://i.ibb.co/1GDwFdQr/1781890896358.png" alt="Personagem" class="aviso-personagem">
         <div class="aviso-conteudo">
@@ -317,7 +416,7 @@
 
         let indexAtual = -1;
 
-        // FECHAR TELA DE CARREGAMENTO APÓS 6 SEGUNDOS EXATOS
+        // CONTROLE DA SPLASH SCREEN (6 SEGUNDOS)
         window.addEventListener('DOMContentLoaded', () => {
             renderizarEpisodios();
             setTimeout(() => {
@@ -325,13 +424,27 @@
                 splash.style.opacity = '0';
                 setTimeout(() => {
                     splash.style.display = 'none';
-                    // Abre o seu pop-up de aviso logo após o carregamento terminar
                     document.getElementById('caixaAviso').style.display = 'flex';
                 }, 600);
-            }, 6000); // 6 segundos de animação
+            }, 6000);
         });
 
-        // MONTAR A LISTAGEM NA TELA
+        // NAVEGAÇÃO: ENTRAR NA PÁGINA DE DETALHES (IGUAL AO CLIQUE DO VÍDEO)
+        function abrirDetalhes() {
+            document.getElementById('secaoHome').style.display = 'none';
+            document.getElementById('secaoDetalhes').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function voltarParaHome() {
+            document.getElementById('secaoDetalhes').style.display = 'none';
+            document.getElementById('secaoPlayer').style.display = 'none';
+            document.getElementById('videoIframe').src = "";
+            document.getElementById('secaoHome').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // MONTAR A LISTA COMPACTA COM AS DATAS EXATAS
         function renderizarEpisodios() {
             const container = document.getElementById('listaEpisodiosContainer');
             container.innerHTML = "";
@@ -348,25 +461,23 @@
             });
         }
 
-        // FUNÇÃO PARA ATIVAR O VÍDEO NO PLAYER E RODAR COM AUTO-PLAY
+        // CONTROLAR E EXIBIR O VÍDEO NO PLAYER
         function carregarEpisodio(index) {
             indexAtual = index;
             const ep = episodios[index];
 
-            document.getElementById('playerSection').style.display = 'block';
+            document.getElementById('secaoPlayer').style.display = 'block';
             document.getElementById('videoIframe').src = ep.url;
-            document.getElementById('playerTitle').innerText = `Maloqueiro Piradão - Temporada 28 - ${ep.titulo}`;
+            document.getElementById('playerTitle').innerText = `Maloqueiro Piradão - Temporada 1 - ${ep.titulo}`;
             document.getElementById('playerDate').innerText = `Data de Estreia original: ${ep.lancamento}`;
 
-            // Atualizar os botões de voltar/avançar conteúdo
+            // Controle das setas de Anterior e Próximo
             document.getElementById('prevBtn').disabled = (index === 0);
             document.getElementById('nextBtn').disabled = (index === episodios.length - 1);
 
-            // Rola suavemente para o player começar a assistir
-            document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('secaoPlayer').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // NAVEGAR PELAS SETAS (ANTERIOR E PRÓXIMO)
         function navegarEp(direcao) {
             let novoIndex = indexAtual + direcao;
             if (novoIndex >= 0 && novoIndex < episodios.length) {
@@ -374,20 +485,4 @@
             }
         }
 
-        function scrollToEpisodes() {
-            document.getElementById('listaEpisodiosTitulo').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // CONTROLE DO POP-UP COM PROCESSO INVERSO
-        function fecharAviso(opcao) {
-            const aviso = document.getElementById('caixaAviso');
-            aviso.classList.add('subir-sumir');
-            if(opcao === 'sim') {
-                setTimeout(() => { alert('Show! Você será notificado dos novos episódios!'); }, 400);
-            }
-            setTimeout(() => { aviso.style.display = 'none'; }, 600);
-        }
-    </script>
-</body>
-</html>
-
+        function foca
