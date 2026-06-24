@@ -332,7 +332,6 @@
 </head>
 <body>
 
-    <!-- HEADER COM A LOGO ROXA -->
     <header>
         <div class="header-esquerda" onclick="voltarParaHome()">
             <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
@@ -344,19 +343,16 @@
         </div>
     </header>
 
-    <!-- FILTRO ALFABÉTICO -->
     <div class="alphabet-filter" id="alphabetFilter">
         <button class="active" onclick="filtrarPorLetra('TODOS', this)">TODOS</button>
     </div>
 
-    <!-- BANNER TOPO -->
     <div class="banner-container">
         <img src="https://i.ibb.co/zH6Rcmjw/XRecorder-Edited-20260621-04.jpg" alt="Banner" class="banner">
     </div>
 
     <div class="container">
 
-        <!-- 1. TELA INICIAL (CATÁLOGO DIRETO) -->
         <section id="secaoHome">
             <div class="secao-titulo"><span>Animes Online</span><button class="btn-ver-mais">VER MAIS</button></div>
             <div class="grid-destaques" id="containerGridHome"></div>
@@ -365,7 +361,6 @@
             <div class="grid-destaques" id="containerGridUltimos"></div>
         </section>
 
-        <!-- 2. PLAYER DE VÍDEO INTEGRADO -->
         <section id="secaoPlayer">
             <button class="btn-ver-mais" onclick="voltarParaDetalhes()" style="margin-bottom: 10px;"><i class="fa-solid fa-arrow-left"></i> Voltar para Detalhes</button>
             <div class="video-wrapper">
@@ -384,63 +379,9 @@
             </div>
         </section>
 
-        <!-- 3. INTERFACE DE EPISÓDIOS -->
         <section id="secaoDetalhes">
             <button class="btn-ver-mais" onclick="voltarParaHome()" style="margin-bottom: 15px;"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</button>
             
             <div class="detalhes-topo">
-                <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" alt="Poster" class="detalhes-poster">
-                <div class="detalhes-info">
-                    <h2 class="detalhes-titulo-principal">Maloqueiro Piradão</h2>
-                    <div class="detalhes-ano">2024</div>
-                    <div class="detalhes-nota"><i class="fa-solid fa-star"></i> 10</div>
-                    <div class="detalhes-tags">
-                        <span class="tag">Comédia</span><span class="tag">Cotidiano</span><span class="tag">Humor</span><span class="tag">Família</span><span class="tag">Letra M</span>
-                    </div>
-                    <p class="detalhes-sinopse">A Saga Insana da Tsunade Peidona é o arco mais marcante do canal O Maloqueiro Piradão, criado por Leonardo. O projeto mistura humor, paródia e entertainment em vídeos que parecem episódios de uma série improvisada, sempre com estilo irreverente. Tsunade acabou virando protagonista ao transformar seus peidos em marca registrada do canal, surgindo nos momentos mais inesperados e arrancando gargalhadas de Whindersson, Felca e até do Xerife Woody. O sucesso foi tanto que a personagem ganhou um arco próprio, recheado de situações absurdas e hilárias. Além disso, os episódios acompanham viagens, histórias de Daniel, Andrezinho e Pedro, e batalhas criativas dentro do Minecraft — desde construções simples, como uma casa moderna, até invenções improváveis como uma Lamborghini ou uma caixa de som automática. O resultado é uma comédia espontânea e caótica, onde cada vídeo se transforma em uma nova aventura divertida.</p>
-                </div>
-            </div>
-
-            <div class="titulo-lista-episodios">Todos episódio do Maloqueiro Piradão</div>
-
-            <div class="temporada-tab-container">
-                <div class="tab-temporada">Temporada 1</div>
-            </div>
-            <div class="ep-lista-bloco" id="listaEpisodiosContainer"></div>
-        </section>
-
-    </div>
-
-    <footer>&copy; 2026 Maloqueiro Piradão. Todos os direitos reservados.</footer>
-
-    <script>
-        const listaAnimes = [
-            {
-                id: "maloqueiro",
-                titulo: "Maloqueiro Piradão",
-                nota: "★ 10",
-                imagem: "https://i.ibb.co/RT5Zkxr0/1782073076111.png",
-                letra: "M",
-                episodios: [
-                    { id: 1, titulo: "Episódio 1", lancamento: "13 de Abril de 2024", url: "https://www.youtube.com/embed/sk38dxNjJxY?autoplay=1", capa: "https://i.ibb.co/WW4FGtcY/XRecorder-Edited-20260623-01.jpg" },
-                    { id: 2, titulo: "Episódio 2", lancamento: "14 de Abril de 2024", url: "https://www.youtube.com/embed/EHnJP9b-YPY?autoplay=1", capa: "https://i.ibb.co/HT8v551p/XRecorder-Edited-20260623-02.jpg" },
-                    { id: 3, titulo: "Episódio 3", lancamento: "15 de Abril de 2024", url: "https://www.youtube.com/embed/orECJ_S0S3Q?autoplay=1", capa: "https://i.ibb.co/s9CKWpQv/XRecorder-Edited-20260623-03.jpg" },
-                    { id: 4, titulo: "Episódio 4", lancamento: "16 de Abril de 2024", url: "https://www.youtube.com/embed/fPg26mBmDOg?autoplay=1", capa: "https://i.ibb.co/Kxv5RRGw/1782249383211.png" },
-                    { id: 5, titulo: "Episódio 5", lancamento: "17 de Abril de 2024", url: "https://www.youtube.com/embed/y1iZJ0yKLog?autoplay=1", capa: "https://i.ibb.co/8Lw3s8PC/XRecorder-Edited-20260623-07.jpg" },
-                    { id: 6, titulo: "Episódio 6", lancamento: "18 de Abril de 2024", url: "https://www.youtube.com/embed/Q9wx7co0_vs?autoplay=1", capa: "https://i.ibb.co/gZD1PDKF/XRecorder-Edited-20260623-08.jpg" },
-                    { id: 7, titulo: "Episódio 7", lancamento: "19 de Abril de 2024", url: "https://www.youtube.com/embed/QPvq4qTiq78?autoplay=1", capa: "https://i.ibb.co/dsMS99qm/XRecorder-Edited-20260623-09.jpg" },
-                    { id: 8, titulo: "Episódio 8", lancamento: "20 de Abril de 2024", url: "https://www.youtube.com/embed/QN-apW9BKHY?autoplay=1", capa: "https://i.ibb.co/KpgRQK0H/XRecorder-Edited-20260623-10.jpg" },
-                    { id: 9, titulo: "Episódio 9", lancamento: "21 de Abril de 2024", url: "https://www.youtube.com/embed/TNW6z_fw-2s?autoplay=1", capa: "https://i.ibb.co/jZRnMM04/XRecorder-Edited-20260623-11.jpg" },
-                    { id: 10, titulo: "Episódio 10", lancamento: "23 de Abril de 2024", url: "https://www.youtube.com/embed/fPPmk10cDp4?autoplay=1", capa: "https://i.ibb.co/jkkwWJX5/XRecorder-Edited-20260623-12.jpg" },
+                <img src="
                     
-                    // CAPAS DO 11 AO 20 ATUALIZADAS COM SEUS LINKS REAIS
-                    { id: 11, titulo: "Episódio 11", lancamento: "24 de Abril de 2024", url: "https://www.youtube.com/embed/7kDlpI1n9qw?autoplay=1", capa: "https://i.ibb.co/gFTkrhkW/XRecorder-Edited-20260624-02.jpg" },
-                    { id: 12, titulo: "Episódio 12", lancamento: "25 de Abril de 2024", url: "https://www.youtube.com/embed/-hBlNzGUGIg?autoplay=1", capa: "https://i.ibb.co/LDHxT5hd/XRecorder-Edited-20260624-03.jpg" },
-                    { id: 13, titulo: "Episódio 13", lancamento: "26 de Abril de 2024", url: "https://www.youtube.com/embed/Cm1wIsqO86o?autoplay=1", capa: "https://i.ibb.co/NgRJNNqz/XRecorder-Edited-20260624-04.jpg" },
-                    { id: 14, titulo: "Episódio 14", lancamento: "27 de Abril de 2024", url: "https://www.youtube.com/embed/l_3428W9fbM?autoplay=1", capa: "https://i.ibb.co/vCRwhhLm/XRecorder-Edited-20260624-05.jpg" },
-                    { id: 15, titulo: "Episódio 15", lancamento: "28 de Abril de 2024", url: "https://www.youtube.com/embed/wzidqo2d-t4?autoplay=1", capa: "https://i.ibb.co/Q7sVHTnh/XRecorder-Edited-20260624-06.jpg" },
-                    { id: 16, titulo: "Episódio 16", lancamento: "29 de Abril de 2024", url: "https://www.youtube.com/embed/4FlsIEojkWc?autoplay=1", capa: "https://i.ibb.co/MxCqFjHF/XRecorder-Edited-20260624-07.jpg" },
-                    { id: 17, titulo: "Episódio 17", lancamento: "30 de Abril de 2024", url: "https://www.youtube.com/embed/e7Q98yrucGg?autoplay=1", capa: "https://i.ibb.co/gBcKmb0/XRecorder-Edited-20260624-08.jpg" },
-                    { id: 18, titulo: "Episódio 18", lancamento: "01 de Maio de 2024", url: "https://www.youtube.com/embed/6F16VwPIp6Q?autoplay=1", capa: "https://i.ibb.co/nsvHtvVZ/XRecorder-Edited-20260624-09.jpg" },
-                    { id: 19, titulo: "Episódio 19", lancamento: "02 de Maio de 2024", url: "https://www.youtube.com/embed/TjyKYQ7i8hU?autoplay=1", capa: "https://i.ibb.co/TBQfGC2W/XRecorder-Edited-20260624-10.jpg" },
-                    { id: 20, titulo: "Episódio 20", lancamento: "03 de Maio de 2024", url: "https://www.youtube.com/embed/LWDLNl7lvN0?autoplay=1", capa
