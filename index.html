@@ -3,137 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maloqueiro Piradão - 1ª Temporada</title>
+    <title>Maloqueiro Piradão - Animes Online</title>
     <link rel="icon" href="https://i.ibb.co/zTXbHHxv/XRecorder-Edited-20260621-01.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0c1b;
+            background-color: #0b0914;
             color: #fff;
             margin: 0;
             padding: 0;
+            padding-bottom: 30px;
         }
 
-        /* TELA DE CARREGAMENTO (SPLASH SCREEN) */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #0b0914;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease;
-        }
-        .boneco-roxo {
-            width: 120px;
-            height: 120px;
-            background-color: #8a2be2;
-            border-radius: 20px;
-            box-shadow: 0 0 20px #8a2be2;
-            animation: rodarE_Pular 1.5s infinite ease-in-out;
-        }
-        .splash-texto {
-            margin-top: 25px;
-            color: #ffcc00;
-            font-size: 1.4rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        @keyframes rodarE_Pular {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            30% { transform: translateY(-50px) rotate(180deg); }
-            50% { transform: translateY(0) rotate(360deg); }
-            75% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* TOPO E MENU */
+        /* TOPO DO SITE IDENTICO À FOTO */
         header {
-            background-color: #1a162b;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-            position: relative;
+            background-color: #0d0a1b;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1a1530;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .menu-btn {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
+        .header-esquerda {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             cursor: pointer;
         }
+        .menu-btn {
+            background: none;
+            border: none;
+            color: #8a63ff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .logo-site {
+            height: 32px;
+            object-fit: contain;
+        }
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-box input {
+            background: #16122c;
+            border: 1px solid #28214e;
+            padding: 7px 35px 7px 15px;
+            border-radius: 20px;
+            color: white;
+            outline: none;
+            width: 140px;
+            transition: width 0.3s;
+            font-size: 0.85rem;
+        }
+        .search-box input:focus {
+            width: 190px;
+            border-color: #8a63ff;
+        }
+        .search-box i {
+            position: absolute;
+            right: 12px;
+            color: #6c56c2;
+            font-size: 0.9rem;
+        }
+
+        /* FILTRO ALFABÉTICO (A-Z) */
+        .alphabet-filter {
+            background: #090712;
+            padding: 10px;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            border-bottom: 1px solid #16122c;
+            white-space: nowrap;
+        }
+        .alphabet-filter::-webkit-scrollbar {
+            height: 3px;
+        }
+        .alphabet-filter::-webkit-scrollbar-thumb {
+            background: #28214e;
+            border-radius: 2px;
+        }
+        .alphabet-filter button {
+            background: #16122c;
+            border: 1px solid #28214e;
+            color: #aaa;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .alphabet-filter button:hover, .alphabet-filter button.active {
+            background: #8a63ff;
+            color: white;
+            border-color: #8a63ff;
+        }
+
+        /* BANNER TOPO */
         .banner-container {
             width: 100%;
             max-width: 900px;
-            margin: 10px auto;
+            margin: 12px auto 4px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
         .banner {
             width: 100%;
-            border-radius: 12px;
-        }
-        h1 {
-            color: #ffcc00;
-            margin: 5px 0;
-            font-size: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .container {
             max-width: 900px;
-            margin: 20px auto;
+            margin: 0 auto;
             padding: 10px;
             box-sizing: border-box;
         }
 
-        /* 1. SEÇÃO DA TELA INICIAL (IGUAL AO VÍDEO) */
+        /* SEÇÕES DE TÍTULO */
         .secao-titulo {
             text-align: left;
             color: #fff;
-            border-left: 4px solid #ffcc00;
+            border-left: 4px solid #8a63ff;
             padding-left: 10px;
-            font-size: 1.4rem;
-            margin: 25px 0 15px 0;
+            font-size: 1.15rem;
+            margin: 20px 0 12px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .btn-ver-mais {
-            background-color: #ff3366;
+            background-color: #8a63ff;
             color: white;
             border: none;
             padding: 4px 10px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
         }
+
+        /* GRID DE POSTS */
         .grid-destaques {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+            gap: 12px;
         }
         .card-anime {
-            background-color: #1a162b;
-            border-radius: 8px;
+            background-color: #120e24;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             cursor: pointer;
             transition: transform 0.2s;
             position: relative;
             text-align: left;
+            border: 1px solid #1d173a;
         }
-        .card-anime:hover { transform: scale(1.03); }
+        .card-anime:hover { transform: scale(1.02); }
         .card-img-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 140%; /* Proporção de poster vertical */
+            padding-top: 135%;
         }
         .card-img {
             position: absolute;
@@ -143,25 +186,28 @@
         .card-nota {
             position: absolute;
             bottom: 5px; right: 5px;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.85);
             color: #ffcc00;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
         }
         .card-titulo {
             padding: 8px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            color: #fff;
+            color: #eee;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* 2. SEÇÃO DE DETALHES (IGUAL AO MOMENTO 0:02 DO VÍDEO) */
-        #secaoDetalhes { display: none; }
+        /* DETALHES E EPISÓDIOS */
+        #secaoDetalhes, #secaoPlayer { display: none; }
         .detalhes-topo {
             display: flex;
             gap: 20px;
@@ -170,91 +216,98 @@
             flex-wrap: wrap;
         }
         .detalhes-poster {
-            width: 200px;
-            border-radius: 8px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            width: 170px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .detalhes-info { flex: 1; min-width: 250px; }
-        .detalhes-titulo-principal { font-size: 2rem; color: #fff; margin: 0 0 10px 0; }
-        .detalhes-ano { color: #aaa; font-size: 1rem; margin-bottom: 10px; }
+        .detalhes-titulo-principal { font-size: 1.6rem; color: #fff; margin: 0 0 8px 0; }
+        .detalhes-ano { color: #aaa; font-size: 0.9rem; margin-bottom: 10px; }
         .detalhes-nota {
-            background-color: #1a162b;
+            background-color: #120e24;
             color: #ffcc00;
             display: inline-block;
-            padding: 5px 12px;
+            padding: 4px 10px;
             font-weight: bold;
             border-radius: 4px;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            border: 1px solid #ffcc00;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            border: 1px solid #28214e;
         }
-        .detalhes-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .detalhes-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
         .tag {
-            background-color: #25203b;
-            color: #ccc;
-            padding: 4px 10px;
-            font-size: 0.8rem;
+            background-color: #16122c;
+            color: #bbb;
+            padding: 3px 8px;
+            font-size: 0.75rem;
             border-radius: 4px;
-            border: 1px solid #3d355c;
+            border: 1px solid #28214e;
         }
-        .tag.dublado { background-color: #ff3366; color: #fff; border: none; }
-        .detalhes-sinopse { font-size: 1rem; line-height: 1.6; color: #ddd; }
+        .detalhes-sinopse { font-size: 0.9rem; line-height: 1.5; color: #ccc; text-align: justify; }
 
-        /* LISTA COMPACTA DE EPISÓDIOS */
-        .temporada-tab-container { display: flex; margin-top: 30px; }
+        .titulo-lista-episodios {
+            text-align: left;
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 25px 0 12px 0;
+            border-left: 4px solid #8a63ff;
+            padding-left: 10px;
+        }
+
+        /* LISTA DE EPISÓDIOS */
+        .temporada-tab-container { display: flex; }
         .tab-temporada {
-            background-color: #ff3366;
+            background-color: #8a63ff;
             color: white;
             font-weight: bold;
-            padding: 12px 24px;
-            border-radius: 6px 6px 0 0;
-            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 4px 4px 0 0;
+            font-size: 0.9rem;
         }
         .ep-lista-bloco {
-            background-color: #1a162b;
-            border-radius: 0 6px 6px 6px;
+            background-color: #120e24;
+            border-radius: 0 4px 4px 4px;
             overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            border: 1px solid #1d173a;
         }
         .ep-item {
             display: flex;
             align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #25203b;
+            padding: 10px;
+            border-bottom: 1px solid #16122c;
             cursor: pointer;
             transition: background 0.2s;
             text-align: left;
         }
-        .ep-item:hover { background-color: #25203b; }
-        .ep-thumb-placeholder {
-            width: 100px; height: 60px;
-            background-color: #2b2640;
+        .ep-item:hover { background-color: #16122c; }
+        .ep-capa-img {
+            width: 95px;
+            height: 54px;
+            object-fit: cover;
             border-radius: 4px;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #ffcc00;
-            font-weight: bold;
+            margin-right: 12px;
             flex-shrink: 0;
+            border: 1px solid #28214e;
         }
         .ep-details { flex: 1; }
-        .ep-name { font-size: 1.05rem; font-weight: bold; color: #fff; margin-bottom: 4px; }
-        .ep-date { font-size: 0.85rem; color: #aaa; }
+        .ep-name { font-size: 0.95rem; font-weight: bold; color: #fff; margin-bottom: 2px; }
+        .ep-date { font-size: 0.75rem; color: #aaa; }
 
-        /* 3. PLAYER DE VÍDEO COMPLETO E FUNCIONAL (00:03 DO SEU PRINT ORIGINAL) */
-        #secaoPlayer { display: none; margin-bottom: 30px; }
+        /* PLAYER DE VÍDEO */
         .video-wrapper {
-            background-color: #1a162b;
-            border-radius: 12px;
+            background-color: #120e24;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            margin-top: 10px;
+            border: 1px solid #1d173a;
         }
         .video-iframe-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* Proporção 16:9 */
+            padding-top: 56.25%;
             background-color: #000;
         }
         .video-iframe-container iframe {
@@ -262,121 +315,93 @@
             top: 0; left: 0; width: 100%; height: 100%;
             border: none;
         }
-        .controls-nav { display: flex; background-color: #110e1c; border-top: 2px solid #25203b; }
+        .controls-nav { display: flex; background-color: #0d0a1b; border-top: 1px solid #16122c; }
         .nav-btn {
-            flex: 1; padding: 15px; background: none; border: none;
-            color: #fff; font-size: 1.3rem; cursor: pointer; transition: background 0.2s;
+            flex: 1; padding: 12px; background: none; border: none;
+            color: #fff; font-size: 1rem; cursor: pointer; transition: background 0.2s;
         }
-        .nav-btn:hover { background-color: #25203b; }
-        .nav-btn:disabled { color: #444; cursor: not-allowed; }
-        .nav-center-line { border-left: 1px solid #25203b; border-right: 1px solid #25203b; }
-        .video-info-box { padding: 15px; text-align: left; }
-        .video-title { color: #ffcc00; font-size: 1.4rem; margin: 0 0 5px 0; }
-        .video-date { color: #888; font-size: 0.9rem; }
+        .nav-btn:hover { background-color: #16122c; }
+        .nav-btn:disabled { color: #333; cursor: not-allowed; }
+        .nav-center-line { border-left: 1px solid #16122c; border-right: 1px solid #16122c; }
+        .video-info-box { padding: 12px; text-align: left; }
+        .video-title { color: #ffcc00; font-size: 1.15rem; margin: 0 0 4px 0; }
+        .video-date { color: #888; font-size: 0.8rem; }
 
-        /* POP-UP DE AVISO COM ANIMAÇÃO INVERSA */
-        .aviso-container {
-            position: fixed;
-            bottom: 20px; left: 50%;
-            transform: translateX(-50%);
-            background-color: #141124;
-            border: 2px solid #ffcc00;
-            border-radius: 15px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            z-index: 1000;
-            width: 90%; max-width: 500px;
-            box-sizing: border-box;
-            animation: entrarAviso 0.6s ease-out forwards;
-        }
-        .aviso-container.subir-sumir { animation: sairAviso 0.6s ease-in forwards; }
-        .aviso-personagem { width: 70px; height: 70px; object-fit: contain; }
-        .aviso-conteudo { text-align: left; flex: 1; }
-        .aviso-texto { font-size: 0.95rem; margin-bottom: 10px; }
-        .aviso-botoes { display: flex; gap: 10px; }
-        .btn-nao { background-color: #2b2640; color: #bbb; border: 1px solid #444; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
-        .btn-sim { background-color: #ffcc00; color: #000; border: none; padding: 6px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-
-        @keyframes entrarAviso { from { opacity: 0; transform: translate(-50%, 40px); } to { opacity: 1; transform: translate(-50%, 0); } }
-        @keyframes sairAviso { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, 40px); } }
-
-        footer { text-align: center; padding: 25px; color: #555; font-size: 0.85rem; margin-top: 40px; }
+        footer { text-align: center; padding: 20px; color: #444; font-size: 0.8rem; margin-top: 30px; }
     </style>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <div class="boneco-roxo"></div>
-        <div class="splash-texto">MALOQUEIRO PIRADÃO</div>
+    <!-- HEADER COM A LOGO ROXA -->
+    <header>
+        <div class="header-esquerda" onclick="voltarParaHome()">
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <img src="https://i.ibb.co/hFrhwNPv/1775870980776.png" alt="Logo" class="logo-site">
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar..." oninput="filtrarBusca()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </header>
+
+    <!-- FILTRO ALFABÉTICO -->
+    <div class="alphabet-filter" id="alphabetFilter">
+        <button class="active" onclick="filtrarPorLetra('TODOS', this)">TODOS</button>
     </div>
 
-    <header>
-        <button class="menu-btn" onclick="voltarParaHome()">☰</button>
-        <div class="banner-container">
-            <img src="https://i.ibb.co/zH6Rcmjw/XRecorder-Edited-20260621-04.jpg" alt="Banner" class="banner">
-        </div>
-        <h1>Maloqueiro Piradão</h1>
-    </header>
+    <!-- BANNER TOPO -->
+    <div class="banner-container">
+        <img src="https://i.ibb.co/zH6Rcmjw/XRecorder-Edited-20260621-04.jpg" alt="Banner" class="banner">
+    </div>
 
     <div class="container">
 
+        <!-- 1. TELA INICIAL (CATÁLOGO DIRETO) -->
         <section id="secaoHome">
             <div class="secao-titulo"><span>Animes Online</span><button class="btn-ver-mais">VER MAIS</button></div>
-            <div class="grid-destaques">
-                <div class="card-anime" onclick="abrirDetalhes()">
-                    <div class="card-img-wrapper">
-                        <img src="https://i.ibb.co/RT5Zkxr0/1722073076111.png" alt="Maloqueiro Piradão" class="card-img" onerror="this.src='https://i.ibb.co/RT5Zkxr0/1782073076111.png'">
-                        <div class="card-nota">★ 7.4</div>
-                    </div>
-                    <div class="card-titulo">Maloqueiro Piradão</div>
-                </div>
-            </div>
+            <div class="grid-destaques" id="containerGridHome"></div>
 
             <div class="secao-titulo"><span>Últimos Episódios</span><button class="btn-ver-mais">VER MAIS</button></div>
-            <div class="grid-destaques">
-                <div class="card-anime" onclick="abrirDetalhes(); carregarEpisodio(9);">
-                    <div class="card-img-wrapper">
-                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="card-img">
-                        <div class="card-nota">Ep 10</div>
-                    </div>
-                    <div class="card-titulo">Episódio 10 lançado!</div>
-                </div>
-            </div>
+            <div class="grid-destaques" id="containerGridUltimos"></div>
         </section>
 
+        <!-- 2. PLAYER DE VÍDEO INTEGRADO -->
         <section id="secaoPlayer">
+            <button class="btn-ver-mais" onclick="voltarParaDetalhes()" style="margin-bottom: 10px;"><i class="fa-solid fa-arrow-left"></i> Voltar para Detalhes</button>
             <div class="video-wrapper">
                 <div class="video-iframe-container">
                     <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="controls-nav">
-                    <button class="nav-btn" id="prevBtn" onclick="navegarEp(-1)">◀ Voltar</button>
-                    <button class="nav-btn nav-center-line" onclick="focarListaEpisodios()">☰ Lista</button>
-                    <button class="nav-btn" id="nextBtn" onclick="navegarEp(1)">Avançar ▶</button>
+                    <button class="nav-btn" id="prevBtn" onclick="navegarEp(-1)">◀ Anterior</button>
+                    <button class="nav-btn nav-center-line" onclick="focarListaEpisodios()">☰ Episódios</button>
+                    <button class="nav-btn" id="nextBtn" onclick="navegarEp(1)">Próximo ▶</button>
                 </div>
                 <div class="video-info-box">
-                    <h3 class="video-title" id="playerTitle">Título do Episódio</h3>
+                    <h3 class="video-title" id="playerTitle">Título</h3>
                     <div class="video-date" id="playerDate">Data</div>
                 </div>
             </div>
         </section>
 
+        <!-- 3. INTERFACE DE EPISÓDIOS -->
         <section id="secaoDetalhes">
+            <button class="btn-ver-mais" onclick="voltarParaHome()" style="margin-bottom: 15px;"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</button>
+            
             <div class="detalhes-topo">
                 <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" alt="Poster" class="detalhes-poster">
                 <div class="detalhes-info">
                     <h2 class="detalhes-titulo-principal">Maloqueiro Piradão</h2>
                     <div class="detalhes-ano">2024</div>
-                    <div class="detalhes-nota">★ 7.4</div>
+                    <div class="detalhes-nota"><i class="fa-solid fa-star"></i> 10</div>
                     <div class="detalhes-tags">
-                        <span class="tag">Ação</span><span class="tag">Comédia</span><span class="tag dublado">Dublado</span><span class="tag">Aventura</span>
+                        <span class="tag">Comédia</span><span class="tag">Cotidiano</span><span class="tag">Humor</span><span class="tag">Família</span><span class="tag">Letra M</span>
                     </div>
-                    <p class="detalhes-sinopse">Prepare-se para curtir as loucuras e aventuras mais bombásticas da Temporada 1! Muita diversão, irreverência e momentos inesquecíveis aguardam você nesta produção espetacular.</p>
+                    <p class="detalhes-sinopse">A Saga Insana da Tsunade Peidona é o arco mais marcante do canal O Maloqueiro Piradão, criado por Leonardo. O projeto mistura humor, paródia e entertainment em vídeos que parecem episódios de uma série improvisada, sempre com estilo irreverente. Tsunade acabou virando protagonista ao transformar seus peidos em marca registrada do canal, surgindo nos momentos mais inesperados e arrancando gargalhadas de Whindersson, Felca e até do Xerife Woody. O sucesso foi tanto que a personagem ganhou um arco próprio, recheado de situações absurdas e hilárias. Além disso, os episódios acompanham viagens, histórias de Daniel, Andrezinho e Pedro, e batalhas criativas dentro do Minecraft — desde construções simples, como uma casa moderna, até invenções improváveis como uma Lamborghini ou uma caixa de som automática. O resultado é uma comédia espontânea e caótica, onde cada vídeo se transforma em uma nova aventura divertida.</p>
                 </div>
             </div>
+
+            <div class="titulo-lista-episodios">Todos episódio do Maloqueiro Piradão</div>
 
             <div class="temporada-tab-container">
                 <div class="tab-temporada">Temporada 1</div>
@@ -386,103 +411,36 @@
 
     </div>
 
-    <div class="aviso-container" id="caixaAviso" style="display: none;">
-        <img src="https://i.ibb.co/1GDwFdQr/1781890896358.png" alt="Personagem" class="aviso-personagem">
-        <div class="aviso-conteudo">
-            <div class="aviso-texto">E aí, meu povo! 😄 Quer ficar sabendo na hora quando sair episódio novo?</div>
-            <div class="aviso-botoes">
-                <button class="btn-nao" onclick="fecharAviso()">Não, valeu</button>
-                <button class="btn-sim" onclick="fecharAviso('sim')">Ôxe, quero sim!</button>
-            </div>
-        </div>
-    </div>
-
     <footer>&copy; 2026 Maloqueiro Piradão. Todos os direitos reservados.</footer>
 
     <script>
-        // BANCO DE DADOS DOS 10 EPISÓDIOS DO YOUTUBE
-        const episodios = [
-            { id: 1, titulo: "Episódio 1", lancamento: "13 de Abril de 2024", url: "https://www.youtube.com/embed/sk38dxNjJxY?autoplay=1" },
-            { id: 2, titulo: "Episódio 2", lancamento: "14 de Abril de 2024", url: "https://www.youtube.com/embed/EHnJP9b-YPY?autoplay=1" },
-            { id: 3, titulo: "Episódio 3", lancamento: "15 de Abril de 2024", url: "https://www.youtube.com/embed/orECJ_S0S3Q?autoplay=1" },
-            { id: 4, titulo: "Episódio 4", lancamento: "16 de Abril de 2024", url: "https://www.youtube.com/embed/fPg26mBmDOg?autoplay=1" },
-            { id: 5, titulo: "Episódio 5", lancamento: "17 de Abril de 2024", url: "https://www.youtube.com/embed/y1iZJ0yKLog?autoplay=1" },
-            { id: 6, titulo: "Episódio 6", lancamento: "18 de Abril de 2024", url: "https://www.youtube.com/embed/Q9wx7co0_vs?autoplay=1" },
-            { id: 7, titulo: "Episódio 7", lancamento: "19 de Abril de 2024", url: "https://www.youtube.com/embed/QPvq4qTiq78?autoplay=1" },
-            { id: 8, titulo: "Episódio 8", lancamento: "20 de Abril de 2024", url: "https://www.youtube.com/embed/QN-apW9BKHY?autoplay=1" },
-            { id: 9, titulo: "Episódio 9", lancamento: "21 de Abril de 2024", url: "https://www.youtube.com/embed/TNW6z_fw-2s?autoplay=1" },
-            { id: 10, titulo: "Episódio 10", lancamento: "23 de Abril de 2024", url: "https://www.youtube.com/embed/fPPmk10cDp4?autoplay=1" }
-        ];
-
-        let indexAtual = -1;
-
-        // CONTROLE DA SPLASH SCREEN (6 SEGUNDOS)
-        window.addEventListener('DOMContentLoaded', () => {
-            renderizarEpisodios();
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                    document.getElementById('caixaAviso').style.display = 'flex';
-                }, 600);
-            }, 6000);
-        });
-
-        // NAVEGAÇÃO: ENTRAR NA PÁGINA DE DETALHES (IGUAL AO CLIQUE DO VÍDEO)
-        function abrirDetalhes() {
-            document.getElementById('secaoHome').style.display = 'none';
-            document.getElementById('secaoDetalhes').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function voltarParaHome() {
-            document.getElementById('secaoDetalhes').style.display = 'none';
-            document.getElementById('secaoPlayer').style.display = 'none';
-            document.getElementById('videoIframe').src = "";
-            document.getElementById('secaoHome').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // MONTAR A LISTA COMPACTA COM AS DATAS EXATAS
-        function renderizarEpisodios() {
-            const container = document.getElementById('listaEpisodiosContainer');
-            container.innerHTML = "";
-            episodios.forEach((ep, index) => {
-                container.innerHTML += `
-                    <div class="ep-item" onclick="carregarEpisodio(${index})">
-                        <div class="ep-thumb-placeholder">EP - ${ep.id}</div>
-                        <div class="ep-details">
-                            <div class="ep-name">${ep.titulo}</div>
-                            <div class="ep-date">Lançado em: ${ep.lancamento}</div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        // CONTROLAR E EXIBIR O VÍDEO NO PLAYER
-        function carregarEpisodio(index) {
-            indexAtual = index;
-            const ep = episodios[index];
-
-            document.getElementById('secaoPlayer').style.display = 'block';
-            document.getElementById('videoIframe').src = ep.url;
-            document.getElementById('playerTitle').innerText = `Maloqueiro Piradão - Temporada 1 - ${ep.titulo}`;
-            document.getElementById('playerDate').innerText = `Data de Estreia original: ${ep.lancamento}`;
-
-            // Controle das setas de Anterior e Próximo
-            document.getElementById('prevBtn').disabled = (index === 0);
-            document.getElementById('nextBtn').disabled = (index === episodios.length - 1);
-
-            document.getElementById('secaoPlayer').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function navegarEp(direcao) {
-            let novoIndex = indexAtual + direcao;
-            if (novoIndex >= 0 && novoIndex < episodios.length) {
-                carregarEpisodio(novoIndex);
-            }
-        }
-
-        function foca
+        const listaAnimes = [
+            {
+                id: "maloqueiro",
+                titulo: "Maloqueiro Piradão",
+                nota: "★ 10",
+                imagem: "https://i.ibb.co/RT5Zkxr0/1782073076111.png",
+                letra: "M",
+                episodios: [
+                    { id: 1, titulo: "Episódio 1", lancamento: "13 de Abril de 2024", url: "https://www.youtube.com/embed/sk38dxNjJxY?autoplay=1", capa: "https://i.ibb.co/WW4FGtcY/XRecorder-Edited-20260623-01.jpg" },
+                    { id: 2, titulo: "Episódio 2", lancamento: "14 de Abril de 2024", url: "https://www.youtube.com/embed/EHnJP9b-YPY?autoplay=1", capa: "https://i.ibb.co/HT8v551p/XRecorder-Edited-20260623-02.jpg" },
+                    { id: 3, titulo: "Episódio 3", lancamento: "15 de Abril de 2024", url: "https://www.youtube.com/embed/orECJ_S0S3Q?autoplay=1", capa: "https://i.ibb.co/s9CKWpQv/XRecorder-Edited-20260623-03.jpg" },
+                    { id: 4, titulo: "Episódio 4", lancamento: "16 de Abril de 2024", url: "https://www.youtube.com/embed/fPg26mBmDOg?autoplay=1", capa: "https://i.ibb.co/Kxv5RRGw/1782249383211.png" },
+                    { id: 5, titulo: "Episódio 5", lancamento: "17 de Abril de 2024", url: "https://www.youtube.com/embed/y1iZJ0yKLog?autoplay=1", capa: "https://i.ibb.co/8Lw3s8PC/XRecorder-Edited-20260623-07.jpg" },
+                    { id: 6, titulo: "Episódio 6", lancamento: "18 de Abril de 2024", url: "https://www.youtube.com/embed/Q9wx7co0_vs?autoplay=1", capa: "https://i.ibb.co/gZD1PDKF/XRecorder-Edited-20260623-08.jpg" },
+                    { id: 7, titulo: "Episódio 7", lancamento: "19 de Abril de 2024", url: "https://www.youtube.com/embed/QPvq4qTiq78?autoplay=1", capa: "https://i.ibb.co/dsMS99qm/XRecorder-Edited-20260623-09.jpg" },
+                    { id: 8, titulo: "Episódio 8", lancamento: "20 de Abril de 2024", url: "https://www.youtube.com/embed/QN-apW9BKHY?autoplay=1", capa: "https://i.ibb.co/KpgRQK0H/XRecorder-Edited-20260623-10.jpg" },
+                    { id: 9, titulo: "Episódio 9", lancamento: "21 de Abril de 2024", url: "https://www.youtube.com/embed/TNW6z_fw-2s?autoplay=1", capa: "https://i.ibb.co/jZRnMM04/XRecorder-Edited-20260623-11.jpg" },
+                    { id: 10, titulo: "Episódio 10", lancamento: "23 de Abril de 2024", url: "https://www.youtube.com/embed/fPPmk10cDp4?autoplay=1", capa: "https://i.ibb.co/jkkwWJX5/XRecorder-Edited-20260623-12.jpg" },
+                    
+                    // CAPAS DO 11 AO 20 ATUALIZADAS COM SEUS LINKS REAIS
+                    { id: 11, titulo: "Episódio 11", lancamento: "24 de Abril de 2024", url: "https://www.youtube.com/embed/7kDlpI1n9qw?autoplay=1", capa: "https://i.ibb.co/gFTkrhkW/XRecorder-Edited-20260624-02.jpg" },
+                    { id: 12, titulo: "Episódio 12", lancamento: "25 de Abril de 2024", url: "https://www.youtube.com/embed/-hBlNzGUGIg?autoplay=1", capa: "https://i.ibb.co/LDHxT5hd/XRecorder-Edited-20260624-03.jpg" },
+                    { id: 13, titulo: "Episódio 13", lancamento: "26 de Abril de 2024", url: "https://www.youtube.com/embed/Cm1wIsqO86o?autoplay=1", capa: "https://i.ibb.co/NgRJNNqz/XRecorder-Edited-20260624-04.jpg" },
+                    { id: 14, titulo: "Episódio 14", lancamento: "27 de Abril de 2024", url: "https://www.youtube.com/embed/l_3428W9fbM?autoplay=1", capa: "https://i.ibb.co/vCRwhhLm/XRecorder-Edited-20260624-05.jpg" },
+                    { id: 15, titulo: "Episódio 15", lancamento: "28 de Abril de 2024", url: "https://www.youtube.com/embed/wzidqo2d-t4?autoplay=1", capa: "https://i.ibb.co/Q7sVHTnh/XRecorder-Edited-20260624-06.jpg" },
+                    { id: 16, titulo: "Episódio 16", lancamento: "29 de Abril de 2024", url: "https://www.youtube.com/embed/4FlsIEojkWc?autoplay=1", capa: "https://i.ibb.co/MxCqFjHF/XRecorder-Edited-20260624-07.jpg" },
+                    { id: 17, titulo: "Episódio 17", lancamento: "30 de Abril de 2024", url: "https://www.youtube.com/embed/e7Q98yrucGg?autoplay=1", capa: "https://i.ibb.co/gBcKmb0/XRecorder-Edited-20260624-08.jpg" },
+                    { id: 18, titulo: "Episódio 18", lancamento: "01 de Maio de 2024", url: "https://www.youtube.com/embed/6F16VwPIp6Q?autoplay=1", capa: "https://i.ibb.co/nsvHtvVZ/XRecorder-Edited-20260624-09.jpg" },
+                    { id: 19, titulo: "Episódio 19", lancamento: "02 de Maio de 2024", url: "https://www.youtube.com/embed/TjyKYQ7i8hU?autoplay=1", capa: "https://i.ibb.co/TBQfGC2W/XRecorder-Edited-20260624-10.jpg" },
+                    { id: 20, titulo: "Episódio 20", lancamento: "03 de Maio de 2024", url: "https://www.youtube.com/embed/LWDLNl7lvN0?autoplay=1", capa
