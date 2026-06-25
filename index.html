@@ -13,210 +13,253 @@
             color: #fff;
             margin: 0;
             padding: 0;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
         }
 
         header {
             background-color: #0d0a1b;
-            padding: 10px 15px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid #1a1530;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-        .header-esquerda {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-        .menu-btn {
-            background: none;
-            border: none;
-            color: #8a63ff;
-            font-size: 1.4rem;
-            cursor: pointer;
-        }
+        .header-esquerda { display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .logo-site { height: 32px; object-fit: contain; }
-        
-        .search-container { display: flex; align-items: center; gap: 8px; }
-        .search-box { display: none; }
-        .search-box input {
-            background: #16122c; border: 1px solid #28214e; padding: 7px 15px;
-            border-radius: 20px; color: white; outline: none; width: 160px; font-size: 0.85rem;
-        }
-        .lupa-trigger { color: #8a63ff; font-size: 1.2rem; cursor: pointer; padding: 5px; }
 
-        /* NOTIFICAÇÃO DO NOVO EPISÓDIO NO TOPO */
-        .alerta-lancamento {
+        .aviso-lancamento-topo {
             background: linear-gradient(90deg, #ce1616, #8a63ff);
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 12px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
             border-bottom: 2px solid #ff3333;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* MENU LATERAL */
-        .sidebar {
-            position: fixed; top: 0; left: -250px; width: 240px; height: 100%;
-            background-color: #0d0a1b; box-shadow: 2px 0 10px rgba(0,0,0,0.5);
-            z-index: 200; transition: left 0.3s ease; padding: 20px; box-sizing: border-box;
-        }
-        .sidebar.active { left: 0; }
-        .sidebar h3 { color: #8a63ff; margin-top: 0; border-bottom: 1px solid #28214e; padding-bottom: 10px; }
-        .sidebar button {
-            display: block; width: 100%; background: #16122c; color: #fff; border: 1px solid #28214e;
-            padding: 10px; text-align: left; margin-bottom: 8px; border-radius: 4px; cursor: pointer; font-weight: bold;
-        }
-        .sidebar button:hover, .sidebar button.active { background-color: #8a63ff; border-color: #8a63ff; }
-        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 150; display: none; }
-
-        .banner-container { width: 100%; max-width: 900px; margin: 12px auto 4px auto; padding: 0 10px; box-sizing: border-box; }
-        .banner { width: 100%; border-radius: 8px; }
-        .container { max-width: 900px; margin: 0 auto; padding: 10px; box-sizing: border-box; }
-
+        .container { max-width: 900px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         .secao-titulo {
-            text-align: left; color: #fff; border-left: 4px solid #8a63ff; padding-left: 10px;
-            font-size: 1.15rem; margin: 20px 0 12px 0; font-weight: bold; text-transform: uppercase;
+            text-align: left; color: #fff; border-left: 4px solid #ce1616; padding-left: 10px;
+            font-size: 1.2rem; margin: 20px 0 15px 0; font-weight: bold; text-transform: uppercase;
         }
 
-        /* GRID DE CARDS */
-        .grid-destaques { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 12px; }
-        .card-anime { background-color: #120e24; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.2s; border: 1px solid #1d173a; position: relative; }
-        .card-anime:hover { transform: scale(1.02); }
-        .card-img-wrapper { position: relative; width: 100%; padding-top: 135%; }
+        /* GRID DA PÁGINA INICIAL */
+        .grid-home { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+        .card-home { background-color: #120e24; border-radius: 6px; overflow: hidden; border: 1px solid #1d173a; cursor: pointer; transition: transform 0.2s; position: relative; }
+        .card-home:hover { transform: scale(1.03); }
+        .card-img-wrapper { position: relative; width: 100%; padding-top: 140%; }
         .card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        .card-nota { position: absolute; bottom: 5px; right: 5px; background-color: rgba(0,0,0,0.85); color: #ffcc00; font-size: 0.7rem; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
+        .card-titulo { padding: 10px; font-size: 0.85rem; font-weight: bold; text-align: center; color: #eee; }
+
+        /* LISTA COMPLETA DOS 40 EPISÓDIOS */
+        .bloco-lista-completa { background-color: #120e24; border-radius: 6px; overflow: hidden; border: 1px solid #1d173a; margin-top: 15px; }
         
-        .tag-novo { position: absolute; top: 5px; left: 5px; background-color: #ce1616; color: white; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; z-index: 5; text-transform: uppercase; }
-        .card-titulo { padding: 8px; font-size: 0.85rem; font-weight: bold; color: #eee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .item-episodio { display: flex; align-items: center; padding: 14px; border-bottom: 1px solid #16122c; cursor: pointer; transition: background 0.2s; }
+        .item-episodio:hover { background-color: #1b1635; }
+        .item-ep-icone { color: #ce1616; font-size: 1.2rem; margin-right: 15px; }
+        .item-ep-texto { font-size: 0.95rem; font-weight: bold; color: #fff; }
 
-        /* TELAS SECUNDÁRIAS */
-        #secaoDetalhes, #secaoPlayer { display: none; }
-        .detalhes-topo { display: flex; gap: 20px; margin-bottom: 25px; text-align: left; }
-        .detalhes-poster { width: 140px; border-radius: 6px; object-fit: cover; }
-        .detalhes-titulo-principal { font-size: 1.5rem; color: #fff; margin: 0 0 8px 0; }
-        .detalhes-sinopse { font-size: 0.9rem; color: #ccc; line-height: 1.4; }
+        /* SEÇÃO DO PLAYER */
+        #telaPlayer { display: none; }
+        .btn-voltar-global { background-color: #312763; color: white; border: none; padding: 9px 18px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 15px; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-voltar-global:hover { background-color: #43358a; }
 
-        /* BOTÕES DE TEMPORADA VERMELHOS */
-        .temporada-container { display: flex; gap: 10px; margin: 15px 0; }
-        .btn-temporada {
-            background-color: #ce1616; color: white; border: none; padding: 8px 16px;
-            font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer;
-        }
-        .btn-temporada.active { background-color: #ff3333; box-shadow: 0 0 8px rgba(255, 0, 0, 0.5); }
-
-        /* LISTA DE EPISÓDIOS */
-        .ep-lista-bloco { background-color: #120e24; border-radius: 4px; overflow: hidden; border: 1px solid #1d173a; }
-        .ep-item { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #16122c; cursor: pointer; }
-        .ep-item:hover { background-color: #16122c; }
-        .ep-capa-img { width: 90px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 12px; }
-        .ep-name { font-size: 0.95rem; font-weight: bold; }
-
-        /* PLAYER DE VÍDEO */
-        .video-wrapper { background-color: #120e24; border-radius: 10px; overflow: hidden; margin-top: 10px; border: 1px solid #1d173a; }
-        .video-iframe-container { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; }
-        .video-iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .controls-nav { display: flex; background-color: #0d0a1b; }
-        .nav-btn { flex: 1; padding: 12px; background: none; border: none; color: #fff; font-size: 1rem; cursor: pointer; border-top: 1px solid #16122c; }
-        .nav-btn:disabled { color: #333; cursor: not-allowed; }
-        .btn-voltar { background-color: #8a63ff; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; margin-bottom: 12px; font-weight: bold; }
+        .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; border: 1px solid #1d173a; }
+        .wrapper-video-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <!-- AVISO DE LANÇAMENTO DO EPISÓDIO NO TOPO (MANDADO ANTERIORMENTE) -->
-    <div class="alerta-lancamento" onclick="carregarEpisodioDireto(39)">
-        <i class="fa-solid fa-bell"></i> ALERTA DE LANÇAMENTO: O Episódio 40 já está disponível! Clique para assistir agora.
-    </div>
-
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-    <div class="sidebar" id="sidebar">
-        <h3>Filtrar por Áudio</h3>
-        <button class="active" onclick="filtrarAudio('TODOS', this)">Todos</button>
-        <button onclick="filtrarAudio('Legendado', this)">Legendado</button>
-        <button onclick="filtrarAudio('Dublado', this)">Dublado</button>
+    <!-- DESTAQUE RÁPIDO PARA O ÚLTIMO EPISÓDIO -->
+    <div class="aviso-lancamento-topo" onclick="abrirPlayer('f6eJfGMUlgo', 40)">
+        <i class="fa-solid fa-bell"></i> ASSISTIR AGORA: Clique aqui para abrir diretamente o Episódio 40!
     </div>
 
     <header>
-        <div class="header-esquerda" onclick="voltarParaHome()">
-            <button class="menu-btn" onclick="event.stopPropagation(); toggleSidebar();"><i class="fa-solid fa-bars"></i></button>
+        <div class="header-esquerda" onclick="fecharPlayer()">
             <img src="https://i.ibb.co/hFrhwNPv/1775870980776.png" alt="Logo" class="logo-site">
-        </div>
-        <div class="search-container">
-            <div class="search-box" id="searchBox">
-                <input type="text" id="searchInput" placeholder="Buscar episódios..." oninput="filtrarBusca()">
-            </div>
-            <i class="fa-solid fa-magnifying-glass lupa-trigger" onclick="toggleSearch()"></i>
+            <span style="font-weight: bold; font-size: 1.15rem; margin-left: 5px;">Maloqueiro Piradão Online</span>
         </div>
     </header>
 
-    <div class="banner-container">
-        <img src="https://i.ibb.co/zH6Rcmjw/XRecorder-Edited-20260621-04.jpg" alt="Banner" class="banner">
-    </div>
-
     <div class="container">
 
-        <!-- 1. TELA INICIAL (DIFERENCIADA) -->
-        <section id="secaoHome">
-            <div class="secao-titulo">Animes Online</div>
-            <div class="grid-destaques">
-                <!-- Card do Anime Principal: Vai para a tela de Temporadas -->
-                <div class="card-anime" onclick="abrirDetalhesAnime()">
-                    <div class="card-img-wrapper">
-                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="card-img">
-                        <div class="card-nota">★ 10</div>
-                    </div>
-                    <div class="card-titulo">Maloqueiro Piradão (Série Completa)</div>
-                </div>
-            </div>
-
-            <div class="secao-titulo">Últimos Episódios Lançados</div>
-            <div class="grid-destaques" id="gridUltimosEps">
-                <!-- Injetado via JavaScript: Abre o Player Direto sem passar por listas -->
+        <!-- TELA DO PLAYER (FICA OCULTA ATÉ CLICAR EM UM EPISÓDIO) -->
+        <section id="telaPlayer">
+            <button class="btn-voltar-global" onclick="fecharPlayer()"><i class="fa-solid fa-arrow-left"></i> Voltar para a Lista</button>
+            <div class="secao-titulo" id="tituloDoVideoRodando">Assistir Vídeo</div>
+            <div class="wrapper-video-player">
+                <iframe id="iframeVideoCanal" src="" allowfullscreen></iframe>
             </div>
         </section>
 
-        <!-- 2. INTERFACE DE TEMPORADAS (BOTÕES VERMELHOS) -->
-        <section id="secaoDetalhes">
-            <button class="btn-voltar" onclick="voltarParaHome()"><i class="fa-solid fa-arrow-left"></i> Voltar à Home</button>
+        <!-- TELA PRINCIPAL COM TODOS OS 40 EPISÓDIOS EXIBIDOS DE UMA SÓ VEZ -->
+        <section id="telaPrincipal">
+            <div class="secao-titulo">Série Completa - 40 Episódios</div>
             
-            <div class="detalhes-topo">
-                <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="detalhes-poster">
-                <div>
-                    <h2 class="detalhes-titulo-principal">Maloqueiro Piradão</h2>
-                    <p class="detalhes-sinopse">Acompanhe de forma organizada todas as temporadas da saga produzida pelo canal.</p>
+            <div class="bloco-lista-completa">
+                <!-- LISTAGEM DIRETA DE TODOS OS VÍDEOS -->
+                <div class="item-episodio" onclick="abrirPlayer('sk38dxNjJxY', 1)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 01</div>
                 </div>
-            </div>
-
-            <div class="secao-titulo">Escolha a Temporada</div>
-            <div class="temporada-container">
-                <button class="btn-temporada active" onclick="mudarTemporada(1, this)">1</button>
-                <button class="btn-temporada" onclick="mudarTemporada(2, this)">2</button>
-                <button class="btn-temporada" onclick="mudarTemporada(3, this)">3</button>
-                <button class="btn-temporada" onclick="mudarTemporada(4, this)">4</button>
-            </div>
-
-            <div class="ep-lista-bloco" id="listaEpisodiosContainer"></div>
-        </section>
-
-        <!-- 3. PLAYER DE VÍDEO -->
-        <section id="secaoPlayer">
-            <button class="btn-voltar" onclick="voltarParaDetalhes()"><i class="fa-solid fa-arrow-left"></i> Voltar à Lista</button>
-            <div class="video-wrapper">
-                <div class="video-iframe-container">
-                    <iframe id="videoIframe" src="" allowfullscreen></iframe>
+                <div class="item-episodio" onclick="abrirPlayer('-hBlNzGUGIg', 2)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 02</div>
                 </div>
-                <div class="controls-nav">
-                    <button class="nav-btn" id="prevBtn" onclick="navegarEp(-1)">◀ Anterior</button>
-                    <button class="nav-btn" id="nextBtn" onclick="navegarEp(1)">Próximo ▶</button>
+                <div class="item-episodio" onclick="abrirPlayer('orECJ_S0S3Q', 3)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 03</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('fPg26mBmDOg', 4)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 04</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('y1iZJ0yKLog', 5)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 05</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('Q9wx7co0_vs', 6)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 06</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('QPvq4qTiq78', 7)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 07</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('QN-apW9BKHY', 8)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 08</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('TNW6z_fw-2s', 9)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 09</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('fPPmk10cDp4', 10)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 10</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('7kDlpI1n9qw', 11)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 11</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('EHnJP9b-YPY', 12)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 12</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('Cm1wIsqO86o', 13)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 13</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('l_3428W9fbM', 14)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 14</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('wzidqo2d-t4', 15)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 15</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('4FlsIEojkWc', 16)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 16</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('e7Q98yrucGg', 17)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 17</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('6F16VwPIp6Q', 18)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 18</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('TjyKYQ7i8hU', 19)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 19</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('LWDLNl7lvN0', 20)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 20</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('H62nZF7IdGU', 21)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 21</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('v_5Dose5_bY', 22)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 22</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('3Ow_m2wSljc', 23)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 23</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('HsgapVTAsPg', 24)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 24</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('-1D4VFxFjo8', 25)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 25</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('FasB2gJfYMg', 26)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 26</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('ZCJL_C3h1HY', 27)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 27</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('fnvdC2Xw_mw', 28)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 28</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('F-HBmb8EoHQ', 29)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 29</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('DEGmJqYohAU', 30)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 30</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('39W4jFRxGd8', 31)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 31</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('aL0_K8tIrWk', 32)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 32</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('BerTOsindtc', 33)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 33</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('84BcQGGkw_E', 34)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 34</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('qHJRXw8ajKo', 35)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 35</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('lU1bjkbJLPc', 36)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 36</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('cKQGYVuYYLk', 37)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 37</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('M4qap9ILVSI', 38)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 38</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('lZooMFrmjYA', 39)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 39</div>
+                </div>
+                <div class="item-episodio" onclick="abrirPlayer('f6eJfGMUlgo', 40)">
+                    <div class="item-ep-icone"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="item-ep-texto">Maloqueiro Piradão - Episódio 40</div>
                 </div>
             </div>
         </section>
@@ -224,146 +267,22 @@
     </div>
 
     <script>
-        // Array com os IDs reais do YouTube de cada um dos 40 episódios
-        const urlsEps = [
-            "sk38dxNjJxY","-hBlNzGUGIg","orECJ_S0S3Q","fPg26mBmDOg","y1iZJ0yKLog","Q9wx7co0_vs","QPvq4qTiq78","QN-apW9BKHY","TNW6z_fw-2s","fPPmk10cDp4",
-            "7kDlpI1n9qw","EHnJP9b-YPY","Cm1wIsqO86o","l_3428W9fbM","wzidqo2d-t4","4FlsIEojkWc","e7Q98yrucGg","6F16VwPIp6Q","TjyKYQ7i8hU","LWDLNl7lvN0",
-            "H62nZF7IdGU","v_5Dose5_bY","3Ow_m2wSljc","HsgapVTAsPg","-1D4VFxFjo8","FasB2gJfYMg","ZCJL_C3h1HY","fnvdC2Xw_mw","F-HBmb8EoHQ","DEGmJqYohAU",
-            "39W4jFRxGd8","aL0_K8tIrWk","BerTOsindtc","84BcQGGkw_E","qHJRXw8ajKo","lU1bjkbJLPc","cKQGYVuYYLk","M4qap9ILVSI","lZooMFrmjYA","f6eJfGMUlgo"
-        ];
-
-        let temporadaAtual = 1;
-        let indexEpAtual = -1;
-
-        window.addEventListener('DOMContentLoaded', () => {
-            renderizarUltimosEpisodios();
-        });
-
-        // Renderiza os episódios recentes direto no painel inicial
-        function renderizarUltimosEpisodios() {
-            const grid = document.getElementById('gridUltimosEps');
-            grid.innerHTML = "";
+        // Função para iniciar o player carregando o ID do YouTube correspondente
+        function abrirPlayer(youtubeId, numeroEpisodio) {
+            document.getElementById("telaPrincipal").style.display = "none";
+            document.getElementById("telaPlayer").style.display = "block";
             
-            // Exibe os últimos 4 lançamentos diretamente na home do site
-            for (let i = 36; i < 40; i++) {
-                let eNumero = i + 1;
-                let isNovo = (eNumero === 40) ? '<div class="tag-novo">Novo!</div>' : '';
-                grid.innerHTML += `
-                    <div class="card-anime" onclick="carregarEpisodioDireto(${i})">
-                        ${isNovo}
-                        <div class="card-img-wrapper">
-                            <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="card-img">
-                            <div class="card-nota">Ep ${eNumero}</div>
-                        </div>
-                        <div class="card-titulo">Maloqueiro Piradão - Ep ${eNumero}</div>
-                    </div>`;
-            }
+            document.getElementById("tituloDoVideoRodando").innerText = `A Assistir: Maloqueiro Piradão - Episódio ${numeroEpisodio}`;
+            document.getElementById("iframeVideoCanal").src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+            window.scrollTo(0, 0);
         }
 
-        // FUNÇÃO CRÍTICA: Executa o player direto sem quebrar a navegação
-        function carregarEpisodioDireto(index) {
-            indexEpAtual = index;
-            document.getElementById('secaoHome').style.display = 'none';
-            document.getElementById('secaoDetalhes').style.display = 'none';
-            document.getElementById('secaoPlayer').style.display = 'block';
-            
-            // Configura o botão de voltar do player para retornar à home se o clique veio da home
-            document.querySelector('#secaoPlayer .btn-voltar').setAttribute('onclick', 'voltarParaHome()');
-            
-            document.getElementById('videoIframe').src = `https://www.youtube.com/embed/${urlsEps[index]}?autoplay=1`;
-            atualizarBotoesNav(index);
-        }
-
-        function abrirDetalhesAnime() {
-            document.getElementById('secaoHome').style.display = 'none';
-            document.getElementById('secaoDetalhes').style.display = 'block';
-            renderizarListaEpisodios();
-        }
-
-        function mudarTemporada(num, btn) {
-            document.querySelectorAll('.btn-temporada').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            temporadaAtual = num;
-            renderizarListaEpisodios();
-        }
-
-        function renderizarListaEpisodios() {
-            const container = document.getElementById('listaEpisodiosContainer');
-            container.innerHTML = "";
-            
-            let inicio = (temporadaAtual - 1) * 10;
-            let fim = inicio + 10;
-
-            for (let i = inicio; i < fim; i++) {
-                let eNumero = i + 1;
-                container.innerHTML += `
-                    <div class="ep-item" onclick="carregarEpisodioDeLista(${i})">
-                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="ep-capa-img">
-                        <div class="ep-name">Maloqueiro Piradão - Episódio ${eNumero}</div>
-                    </div>`;
-            }
-        }
-
-        function carregarEpisodioDeLista(index) {
-            indexEpAtual = index;
-            document.getElementById('secaoDetalhes').style.display = 'none';
-            document.getElementById('secaoPlayer').style.display = 'block';
-            
-            // Configura o botão de voltar para retornar à lista de temporadas
-            document.querySelector('#secaoPlayer .btn-voltar').setAttribute('onclick', 'voltarParaDetalhes()');
-            
-            document.getElementById('videoIframe').src = `https://www.youtube.com/embed/${urlsEps[index]}?autoplay=1`;
-            atualizarBotoesNav(index);
-        }
-
-        function atualizarBotoesNav(index) {
-            document.getElementById('prevBtn').disabled = (index === 0);
-            document.getElementById('nextBtn').disabled = (index === 39);
-        }
-
-        function navegarEp(direcao) {
-            let novoIndex = indexEpAtual + direcao;
-            if (novoIndex >= 0 && novoIndex < 40) {
-                indexEpAtual = novoIndex;
-                document.getElementById('videoIframe').src = `https://www.youtube.com/embed/${urlsEps[novoIndex]}?autoplay=1`;
-                atualizarBotoesNav(novoIndex);
-            }
-        }
-
-        function toggleSearch() {
-            const box = document.getElementById('searchBox');
-            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
-            if(box.style.display === 'block') document.getElementById('searchInput').focus();
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            const overlay = document.getElementById('sidebarOverlay');
-            overlay.style.display = (overlay.style.display === 'block') ? 'none' : 'block';
-        }
-
-        function filtrarAudio(tipo, btn) {
-            document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            toggleSidebar();
-            // Apenas demonstração estrutural do filtro lateral solicitado
-        }
-
-        function filtrarBusca() {
-            // Lógica simples de filtro de busca na interface
-        }
-
-        function voltarParaHome() {
-            document.getElementById('secaoDetalhes').style.display = 'none';
-            document.getElementById('secaoPlayer').style.display = 'none';
-            document.getElementById('videoIframe').src = "";
-            document.getElementById('secaoHome').style.display = 'block';
-        }
-
-        function voltarParaDetalhes() {
-            document.getElementById('secaoPlayer').style.display = 'none';
-            document.getElementById('videoIframe').src = "";
-            document.getElementById('secaoDetalhes').style.display = 'block';
+        // Função para encerrar a reprodução e retornar à listagem geral dos 40 episódios
+        function fecharPlayer() {
+            document.getElementById("telaPlayer").style.display = "none";
+            document.getElementById("iframeVideoCanal").src = "";
+            document.getElementById("telaPrincipal").style.display = "block";
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
