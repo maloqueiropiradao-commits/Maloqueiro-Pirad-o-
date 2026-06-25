@@ -65,13 +65,17 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             display: none;
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(20px);
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
         .aviso-lancamento-topo.mostrar {
             display: block;
             opacity: 1;
             transform: translateY(0);
+        }
+        .aviso-lancamento-topo.esconder-anim {
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         /* MODAL INTERATIVO DE INSCRIÇÃO */
@@ -86,6 +90,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.7);
             z-index: 1000;
             max-width: 320px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
         .modal-notificacao p { margin: 0 0 15px 0; font-size: 0.95rem; line-height: 1.4; color: #eee; }
         .modal-botoes { display: flex; gap: 10px; justify-content: flex-end; }
@@ -119,92 +124,18 @@
         .container-generos { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag-genero { background-color: #1d173a; border: 1px solid #312763; color: #bca8ff; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
 
-        /* HEADER DE TEMPORADAS NO NOVO FORMATO */
-        .secao-temporadas-abas {
-            display: flex;
-            background-color: #1a162e;
-            border-radius: 6px 6px 0 0;
-            overflow: hidden;
-            border: 1px solid #2d254f;
-            border-bottom: none;
-            margin-top: 25px;
-        }
-        .aba-numero {
-            background-color: #ce1616;
-            color: white;
-            padding: 15px 25px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .aba-texto {
-            flex: 1;
-            background-color: #120e24;
-            color: #8c86a5;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-
-        /* LISTA COMPLETA DOS EPISÓDIOS COM THUMBNAILS (COMO NA FOTO) */
-        .bloco-lista-completa { 
-            background-color: #120e24; 
-            border-radius: 0 0 6px 6px; 
-            overflow: hidden; 
-            border: 1px solid #2d254f; 
-        }
-        .item-episodio { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 12px; 
-            border-bottom: 1px solid #1c1635; 
-            cursor: pointer; 
-            transition: background 0.2s; 
-        }
-        .item-episodio:hover { background-color: #1a1433; }
+        /* LISTA COMPLETA DOS EPISÓDIOS COM MINIATURAS */
+        .bloco-lista-completa { background-color: #120e24; border-radius: 6px; overflow: hidden; border: 1px solid #1d173a; margin-top: 15px; }
+        .item-episodio { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #16122c; cursor: pointer; transition: background 0.2s; }
+        .item-episodio:hover { background-color: #1b1635; }
         
-        .ep-info-esquerda { display: flex; align-items: center; gap: 15px; flex: 1; }
-        .ep-thumbnail-container {
-            width: 130px;
-            height: 73px;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #2d254f;
-            flex-shrink: 0;
-        }
-        .ep-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .ep-numero-tag {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #8c86a5;
-            min-width: 55px;
-        }
-        .ep-titulo-link {
-            font-size: 1.05rem;
-            font-weight: bold;
-            color: #4a90e2;
-            text-decoration: underline;
-            margin-bottom: 4px;
-            display: inline-block;
-        }
-        .ep-data-lancamento {
-            font-size: 0.85rem;
-            color: #635d7a;
-            display: block;
-        }
+        .ep-info-esquerda { display: flex; align-items: center; gap: 15px; }
+        .capa-miniatura-ep { width: 90px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #28214e; background-color: #000; }
+        .item-ep-texto { font-size: 0.95rem; font-weight: bold; color: #fff; }
         
         .ep-info-direita { display: flex; align-items: center; gap: 15px; }
-        .nota-estrela-container { display: flex; align-items: center; gap: 4px; background: rgba(255,193,7,0.1); border: 1px solid rgba(255,193,7,0.3); padding: 4px 8px; border-radius: 4px; }
+        .item-ep-estreia-ano { font-size: 0.8rem; color: #8a63ff; background: #1c183a; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+        .nota-estrela-container { display: flex; align-items: center; gap: 4px; background: rgba(255,193,7,0.1); border: 1px solid rgba(255,193,7,0.3); padding: 3px 8px; border-radius: 4px; }
         .nota-estrela-container i { color: #ffc107; font-size: 0.85rem; }
         .nota-num { font-size: 0.85rem; font-weight: bold; color: #ffc107; }
 
@@ -214,17 +145,7 @@
         .btn-voltar-global:hover { background-color: #43358a; }
         .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; border: 1px solid #1d173a; }
         .wrapper-video-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        
-        #mensagemNenhumResultado { 
-            display: none; 
-            padding: 30px; 
-            text-align: center; 
-            color: #baa2ff; 
-            font-weight: bold;
-            background-color: #120e24;
-            border: 1px solid #2d254f;
-            border-radius: 0 0 6px 6px;
-        }
+        #mensagemNenhumResultado { display: none; padding: 20px; text-align: center; color: #aaa; font-weight: bold; }
 
         @media (max-width: 600px) {
             .bloco-detalhes-anime { flex-direction: column; align-items: center; text-align: center; }
@@ -232,11 +153,23 @@
             .sinopse-texto { text-align: center; }
             .container-generos { justify-content: center; }
             .item-episodio { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .ep-info-direita { width: 100%; justify-content: flex-end; }
+            .ep-info-direita { width: 100%; justify-content: space-between; padding-left: 5px; }
         }
     </style>
 </head>
 <body>
+
+    <div class="aviso-lancamento-topo" id="avisoNotificacaoTopo" onclick="abrirPlayer('f6eJfGMUlgo', 40)">
+        <i class="fa-solid fa-bell"></i> RECENTE: Clique aqui para abrir diretamente o Episódio 40! (Lançado em 24/06/2026)
+    </div>
+
+    <div class="modal-notificacao" id="boxNotificacaoInterativa">
+        <p><strong>E aí, meu povo! 😄</strong> Quer ficar sabendo na hora quando sair episódio novo?</p>
+        <div class="modal-botoes">
+            <button class="btn-modal btn-recusar" onclick="fecharModalNotificacao(false)">Não, valeu</button>
+            <button class="btn-modal btn-aceitar" onclick="fecharModalNotificacao(true)">Ôxe, quero sim!</button>
+        </div>
+    </div>
 
     <header>
         <div class="header-esquerda" onclick="fecharPlayer()">
@@ -249,7 +182,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <a href="https://ibb.co/603fj1wH" target="_blank">
-                <img src="https://i.ibb.co/1GDwFdQr/1781890896358.png" alt="Perfil" class="perfil-usuario">
+                <img src="https://i.ibb.co/1GDwFdQr/1781890896358.png" alt="Seu Personagem" class="perfil-usuario">
             </a>
         </div>
     </header>
@@ -272,57 +205,79 @@
                     <h1 class="titulo-anime-info">O Maloqueiro Piradão</h1>
                     <span class="ano-anime"><i class="fa-solid fa-calendar-days"></i> Criado em: 2024</span>
                     <p class="sinopse-texto">
-                        A Saga Insana da Tsunade Peidona é o arco mais marcante do canal O Maloqueiro Piradão, criado por Leonardo. O projeto mistura humor, paródia e entretenimento...
+                        A Saga Insana da Tsunade Peidona é o arco mais marcante do canal O Maloqueiro Piradão, criado por Leonardo. O projeto mistura humor, paródia e entertainment em vídeos que parecem episódios de uma série improvisada, sempre com estilo irreverente. Tsunade acabou virando protagonista ao transformar seus peidos em marca registrada do canal, surgindo nos momentos mais inesperados e arrancando gargalhadas de Whindersson, Felca e até do Xerife Woody. O sucesso foi tanto que a personagem ganhou um arco próprio, recheado de situações absurdas e hilárias. Além disso, os episódios acompanham viagens, histórias de Daniel, Andrezinho e Pedro, e batalhas criativas dentro do Minecraft — desde construções simples, como uma casa moderna, até invenções improváveis como uma Lamborghini ou uma caixa de som automática. O resultado é uma comédia espontânea e caótica, onde cada vídeo se transforma em uma nova aventura divertida.
                     </p>
                     <div class="container-generos">
                         <span class="tag-genero">Comédia</span>
+                        <span class="tag-genero">Cotidiano</span>
                         <span class="tag-genero">Humor</span>
+                        <span class="tag-genero">Família</span>
+                        <span class="tag-genero">Letra M</span>
                     </div>
                 </div>
             </div>
 
-            <div class="secao-titulo">Temporadas e Episódios</div>
+            <div class="secao-titulo">Temporada 1 - Lista de Episódios</div>
             
-            <div class="secao-temporadas-abas">
-                <div class="aba-numero">1</div>
-                <div class="aba-texto">Temporada 1</div>
-            </div>
-
-            <div id="mensagemNenhumResultado"><i class="fa-solid fa-circle-exclamation"></i> Nenhum episódio encontrado com o termo pesquisado.</div>
+            <div id="mensagemNenhumResultado"><i class="fa-solid fa-circle-exclamation"></i> Nenhum episódio encontrado com esse termo.</div>
 
             <div class="bloco-lista-completa" id="containerGeralEps">
                 
-                <div class="item-episodio" data-busca="maloqueiro piradao episodio 1" onclick="abrirPlayer('sk38dxNjJxY', '1')">
-                    <div class="ep-info-esquerda">
-                        <div class="ep-thumbnail-container">
-                            <img src="https://i.ibb.co/KpCtZkDw/XRecorder-Edited-20260625-02.jpg" class="ep-thumbnail" alt="Ep 1">
-                        </div>
-                        <div class="ep-numero-tag">Ep - 1</div>
-                        <div>
-                            <span class="ep-titulo-link">Maloqueiro Piradão - Episódio 1</span>
-                            <span class="ep-data-lancamento">13 de abril de 2024</span>
-                        </div>
-                    </div>
-                    <div class="ep-info-direita">
-                        <div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div>
-                    </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 1" onclick="abrirPlayer('sk38dxNjJxY', 1)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 01</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">20/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 2" onclick="abrirPlayer('-hBlNzGUGIg', 2)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 02</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">20/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 3" onclick="abrirPlayer('orECJ_S0S3Q', 3)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 03</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">20/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 4" onclick="abrirPlayer('fPg26mBmDOg', 4)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 04</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">20/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 5" onclick="abrirPlayer('y1iZJ0yKLog', 5)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 05</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 6" onclick="abrirPlayer('Q9wx7co0_vs', 6)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 06</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 7" onclick="abrirPlayer('QPvq4qTiq78', 7)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 07</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 8" onclick="abrirPlayer('QN-apW9BKHY', 8)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 08</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 9" onclick="abrirPlayer('TNW6z_fw-2s', 9)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 09</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 10" onclick="abrirPlayer('fPPmk10cDp4', 10)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 10</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
                 </div>
 
-                <div class="item-episodio" data-busca="maloqueiro piradao episodio 2" onclick="abrirPlayer('-hBlNzGUGIg', '2')">
-                    <div class="ep-info-esquerda">
-                        <div class="ep-thumbnail-container">
-                            <img src="https://i.ibb.co/8D09H7D9/XRecorder-Edited-20260625-03.jpg" class="ep-thumbnail" alt="Ep 2">
-                        </div>
-                        <div class="ep-numero-tag">Ep - 2</div>
-                        <div>
-                            <span class="ep-titulo-link">Maloqueiro Piradão - Episódio 2</span>
-                            <span class="ep-data-lancamento">14 de abril de 2024</span>
-                        </div>
-                    </div>
-                    <div class="ep-info-direita">
-                        <div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div>
-                    </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 11" onclick="abrirPlayer('7kDlpI1n9qw', 11)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/gFTkrhkW/XRecorder-Edited-20260624-02.jpg" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 11</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">22/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
                 </div>
-
-                <div class="item-episodio" data-busca="maloqueiro piradao episodio 3" onclick="abrirPlayer('orECJ_S0S3Q', '3')">
-                    
+                <div class="item-episodio" data-busca="maloqueiro piradao 12" onclick="abrirPlayer('EHnJP9b-YPY', 12)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/LDHxT5hd/XRecorder-Edited-20260624-03.jpg" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 12</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">22/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 13" onclick="abrirPlayer('Cm1wIsqO86o', 13)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/NgRJNNqz/XRecorder-Edited-20260624-04.jpg" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 13</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">22/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 14" onclick="abrirPlayer('l_3428W9fbM', 14)">
+                    <div class="ep-info-esquerda"><img src="https://i.ibb.co/vCRwhhLm/XRecorder-Edited-20260624-05.jpg" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 14</span></div>
+                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">22/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
+                </div>
+                <div class="item-episodio" data-busca="maloqueiro piradao 15" onclick="
