@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                <div <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -52,7 +52,7 @@
         }
         .search-container i { color: #8a63ff; position: absolute; right: 12px; }
 
-        /* AVISO DO TOPO ANIMADO */
+        /* AVISO DO TOPO CORRIGIDO (Odisplay none real impede que ele bloqueie cliques) */
         .aviso-lancamento-topo {
             background: linear-gradient(90deg, #ce1616, #8a63ff);
             color: white;
@@ -63,19 +63,15 @@
             cursor: pointer;
             border-bottom: 2px solid #ff3333;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            display: none;
+            display: none; /* Escondido por padrão, não bloqueia nada */
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(-20px);
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
         .aviso-lancamento-topo.mostrar {
-            display: block;
+            display: block !important;
             opacity: 1;
             transform: translateY(0);
-        }
-        .aviso-lancamento-topo.esconder-anim {
-            opacity: 0;
-            transform: translateY(20px);
         }
 
         /* MODAL INTERATIVO DE INSCRIÇÃO */
@@ -129,11 +125,11 @@
         .item-episodio { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #16122c; cursor: pointer; transition: background 0.2s; }
         .item-episodio:hover { background-color: #1b1635; }
         
-        .ep-info-esquerda { display: flex; align-items: center; gap: 15px; }
+        .ep-info-esquerda { display: flex; align-items: center; gap: 15px; pointer-events: none; }
         .capa-miniatura-ep { width: 90px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #28214e; background-color: #000; }
         .item-ep-texto { font-size: 0.95rem; font-weight: bold; color: #fff; }
         
-        .ep-info-direita { display: flex; align-items: center; gap: 15px; }
+        .ep-info-direita { display: flex; align-items: center; gap: 15px; pointer-events: none; }
         .item-ep-estreia-ano { font-size: 0.8rem; color: #8a63ff; background: #1c183a; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
         .nota-estrela-container { display: flex; align-items: center; gap: 4px; background: rgba(255,193,7,0.1); border: 1px solid rgba(255,193,7,0.3); padding: 3px 8px; border-radius: 4px; }
         .nota-estrela-container i { color: #ffc107; font-size: 0.85rem; }
@@ -159,10 +155,12 @@
 </head>
 <body>
 
+    <!-- AVISO DE LANÇAMENTO ANIMADO NO TOPO -->
     <div class="aviso-lancamento-topo" id="avisoNotificacaoTopo" onclick="abrirPlayer('f6eJfGMUlgo', 40)">
         <i class="fa-solid fa-bell"></i> RECENTE: Clique aqui para abrir diretamente o Episódio 40! (Lançado em 24/06/2026)
     </div>
 
+    <!-- BOX DE AVISO DE NOVA NOTIFICAÇÃO -->
     <div class="modal-notificacao" id="boxNotificacaoInterativa">
         <p><strong>E aí, meu povo! 😄</strong> Quer ficar sabendo na hora quando sair episódio novo?</p>
         <div class="modal-botoes">
@@ -189,6 +187,7 @@
 
     <div class="container">
 
+        <!-- TELA DO PLAYER -->
         <section id="telaPlayer">
             <button class="btn-voltar-global" onclick="fecharPlayer()"><i class="fa-solid fa-arrow-left"></i> Voltar para a Lista</button>
             <div class="secao-titulo" id="tituloDoVideoRodando">Assistir Vídeo</div>
@@ -197,6 +196,7 @@
             </div>
         </section>
 
+        <!-- CONTEÚDO PRINCIPAL -->
         <section id="telaPrincipal">
             
             <div class="bloco-detalhes-anime">
@@ -223,6 +223,7 @@
 
             <div class="bloco-lista-completa" id="containerGeralEps">
                 
+                <!-- EPS 1 AO 10 -->
                 <div class="item-episodio" data-busca="maloqueiro piradao 1" onclick="abrirPlayer('sk38dxNjJxY', 1)">
                     <div class="ep-info-esquerda"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 01</span></div>
                     <div class="ep-info-direita"><span class="item-ep-estreia-ano">20/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
@@ -264,6 +265,7 @@
                     <div class="ep-info-direita"><span class="item-ep-estreia-ano">21/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
                 </div>
 
+                <!-- EPS 11 AO 20 COM AS CAPAS ATUALIZADAS -->
                 <div class="item-episodio" data-busca="maloqueiro piradao 11" onclick="abrirPlayer('7kDlpI1n9qw', 11)">
                     <div class="ep-info-esquerda"><img src="https://i.ibb.co/gFTkrhkW/XRecorder-Edited-20260624-02.jpg" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 11</span></div>
                     <div class="ep-info-direita"><span class="item-ep-estreia-ano">22/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
@@ -278,6 +280,4 @@
                 </div>
                 <div class="item-episodio" data-busca="maloqueiro piradao 14" onclick="abrirPlayer('l_3428W9fbM', 14)">
                     <div class="ep-info-esquerda"><img src="https://i.ibb.co/vCRwhhLm/XRecorder-Edited-20260624-05.jpg" class="capa-miniatura-ep"><span class="item-ep-texto">Maloqueiro Piradão - Episódio 14</span></div>
-                    <div class="ep-info-direita"><span class="item-ep-estreia-ano">22/06/2026</span><div class="nota-estrela-container"><i class="fa-solid fa-star"></i><span class="nota-num">10</span></div></div>
-                </div>
-                <div class="item-episodio" data-busca="maloqueiro piradao 15" onclick="
+                    <div 
