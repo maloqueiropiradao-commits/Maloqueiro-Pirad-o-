@@ -14,410 +14,238 @@
             margin: 0;
             padding: 0;
             padding-bottom: 40px;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        /* HEADER E BUSCA */
         header {
-            background-color: #0d0a1b;
-            padding: 12px 15px;
+            background-color: #0b0914;
+            padding: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #1a1530;
             position: sticky;
             top: 0;
             z-index: 100;
+            gap: 10px;
         }
-        .header-esquerda { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .logo-site { height: 32px; object-fit: contain; }
-        .perfil-usuario { height: 35px; width: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #8a63ff; }
+        .btn-menu-linhas { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .logo-central-branding { font-size: 1.4rem; font-weight: 900; color: #bc3bfb; text-shadow: 0px 0px 8px rgba(188, 59, 251, 0.6); font-style: italic; letter-spacing: 1px; cursor: pointer; }
+        .container-busca-topo { display: flex; align-items: center; background-color: #141125; border-radius: 4px; padding: 4px 8px; flex: 1; max-width: 250px; }
+        .input-busca { background: none; border: none; color: white; outline: none; font-size: 0.9rem; width: 100%; }
+        .btn-pesquisa-topo { background: none; border: none; color: #bc3bfb; font-size: 1.1rem; cursor: pointer; }
 
-        /* BARRA DE PESQUISA */
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            background: #16122c;
-            border: 1px solid #28214e;
-            padding: 6px 12px;
-            border-radius: 20px;
-            width: 180px;
-        }
-        .search-container input {
-            background: transparent;
-            border: none;
-            color: white;
-            outline: none;
-            font-size: 0.85rem;
-            width: 100%;
-        }
-        .search-container i { color: #8a63ff; position: absolute; right: 12px; }
-
-        /* AVISO DO TOPO */
-        .aviso-lancamento-topo {
-            background: linear-gradient(90deg, #ce1616, #8a63ff);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border-bottom: 2px solid #ff3333;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            display: none;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .aviso-lancamento-topo.mostrar {
-            display: block !important;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* MODAL INTERATIVO DE INSCRIÇÃO */
-        .modal-notificacao {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #120e24;
-            border: 2px solid #8a63ff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-            z-index: 1000;
-            max-width: 320px;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .modal-notificacao p { margin: 0 0 15px 0; font-size: 0.95rem; line-height: 1.4; color: #eee; }
-        .modal-botoes { display: flex; gap: 10px; justify-content: flex-end; }
-        .btn-modal { padding: 8px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; border: none; font-size: 0.85rem; }
-        .btn-recusar { background-color: #28214e; color: #aaa; }
-        .btn-aceitar { background-color: #ce1616; color: white; }
+        /* FILTRO ALFABÉTICO */
+        .barra-alfabetica { display: flex; gap: 22px; padding: 10px 15px; overflow-x: auto; border-bottom: 1px solid #141125; scrollbar-width: none; }
+        .barra-alfabetica::-webkit-scrollbar { display: none; }
+        .letra-filtro { color: #6a5d93; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-decoration: none; }
+        .letra-filtro.ativa { color: #bc3bfb; border-bottom: 3px solid #bc3bfb; padding-bottom: 2px; }
 
         .container { max-width: 900px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
-        
-        .titulo-secao-topo {
-            color: #777;
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin: 20px 0 25px 0;
-        }
-        .subtitulo-temporadas {
-            color: #fff;
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+        .secao-layout { display: none; }
+        .secao-layout.ativa { display: block; }
 
-        /* ÁREA DE DETALHES DO ANIME */
-        .bloco-detalhes-anime {
-            background-color: #120e24;
-            border: 1px solid #1d173a;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            display: flex;
-            gap: 20px;
-        }
-        .poster-anime { width: 150px; border-radius: 6px; border: 1px solid #28214e; object-fit: cover; }
-        .info-detalhes { flex: 1; }
-        .titulo-anime-info { margin: 0 0 5px 0; font-size: 1.7rem; color: #fff; font-weight: bold; }
-        .ano-anime { font-size: 0.9rem; color: #8a63ff; font-weight: bold; margin-bottom: 12px; display: block; }
-        .sinopse-texto { font-size: 0.9rem; color: #ccc; line-height: 1.5; margin: 0 0 15px 0; text-align: justify; }
-        .container-generos { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag-genero { background-color: #1d173a; border: 1px solid #312763; color: #bca8ff; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+        /* TÍTULOS */
+        .bloco-header-titulo { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; }
+        .titulo-decorado { font-size: 1.2rem; font-weight: bold; color: #fff; border-left: 4px solid #bc3bfb; padding-left: 10px; }
+        .btn-ver-mais { background-color: #8a63ff; color: white; border: none; padding: 6px 16px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; cursor: pointer; }
 
-        /* BLOCO DE SELEÇÃO DA TEMPORADA (SÓ ROXO AGORA) */
-        .bloco-seletor-temporada {
-            display: flex;
-            background-color: #181818;
-            align-items: stretch;
-            margin-bottom: 3px;
-        }
-        .numero-temporada-box {
-            background-color: #8a63ff;
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: bold;
-            width: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 0;
-        }
-        .texto-temporada-box {
-            color: #999;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-            flex: 1;
-        }
+        /* POSTER */
+        .container-poster-destaque { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; cursor: pointer; }
+        .poster-principal-imagem { width: 210px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .legenda-poster-clique { margin-top: 12px; font-size: 1.1rem; font-weight: bold; color: #fff; }
 
-        /* DESIGN DOS EPISÓDIOS ESTILO HAIKYUU */
+        /* GRID HOME */
+        .grid-ultimos-episodios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
+        .card-episodio-home { cursor: pointer; display: flex; flex-direction: column; }
+        .thumb-wrapper-home { position: relative; width: 100%; padding-top: 56.25%; background-color: #1c1a27; border-radius: 4px; overflow: hidden; }
+        .thumb-wrapper-home img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .tag-legendado-home { position: absolute; bottom: 6px; right: 6px; background-color: #8a63ff; color: white; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 3px; }
+        .info-card-home { text-align: center; margin-top: 8px; }
+        .info-card-home .anime-nome { font-size: 0.9rem; font-weight: bold; margin: 0; }
+        .info-card-home .ep-numero { font-size: 0.85rem; color: #aaa; margin: 3px 0 0 0; }
+
+        /* SEÇÃO DE RESULTADOS DA BUSCA */
+        .texto-resultado-pesquisa { font-size: 1.1rem; color: #fff; margin-bottom: 25px; border-left: 4px solid #bc3bfb; padding-left: 10px; }
+        .texto-resultado-pesquisa span { color: #8a63ff; font-weight: bold; }
+        .container-lista-pesquisa { display: flex; flex-direction: column; gap: 15px; }
+        .resultado-item-linha { display: flex; align-items: center; gap: 15px; cursor: pointer; background-color: #110e1e; padding: 10px; border-radius: 6px; }
+        .resultado-capa-mini { width: 70px; height: 100px; object-fit: cover; border-radius: 4px; }
+        .resultado-info-texto { display: flex; flex-direction: column; gap: 5px; }
+        .resultado-titulo-anime { font-size: 1.1rem; font-weight: bold; color: #fff; }
+        .resultado-estrela-nota { color: #f39c12; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+
+        /* LISTA DE EPISÓDIOS */
+        .btn-voltar-topo { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: bold; }
+        .bloco-seletor-temporada { display: flex; background-color: #181818; margin-bottom: 3px; }
+        .numero-temporada-box { background-color: #8a63ff; color: #fff; font-size: 1.8rem; font-weight: bold; width: 90px; display: flex; align-items: center; justify-content: center; padding: 15px 0; }
+        .texto-temporada-box { color: #999; font-size: 1.1rem; display: flex; align-items: center; padding-left: 20px; flex: 1; }
         .bloco-lista-completa { display: flex; flex-direction: column; background-color: #000; }
-        
-        .item-episodio {
-            display: flex;
-            align-items: center;
-            padding: 12px 10px;
-            border-bottom: 1px solid #1c1c1c;
-            cursor: pointer;
-            transition: background 0.2s;
-            gap: 15px;
-        }
-        .item-episodio:hover { background-color: #111; }
-        
-        .capa-miniatura-ep {
-            width: 100px;
-            height: 58px;
-            object-fit: cover;
-            background-color: #000;
-        }
-        
-        .ep-identificador {
-            color: #aaa;
-            font-size: 1rem;
-            font-weight: bold;
-            min-width: 50px;
-        }
-        
-        .ep-divisor-vertical {
-            width: 1px;
-            height: 35px;
-            background-color: #333;
-        }
-        
-        .ep-dados-conteudo {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        
-        .ep-titulo-link {
-            color: #fff;
-            font-size: 0.95rem;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        
-        .ep-data-estreia {
-            color: #666;
-            font-size: 0.8rem;
-        }
+        .item-episodio { display: flex; align-items: center; padding: 12px 10px; border-bottom: 1px solid #1c1c1c; cursor: pointer; gap: 15px; }
+        .capa-miniatura-ep { width: 100px; height: 58px; object-fit: cover; }
+        .ep-identificador { color: #aaa; font-size: 1rem; font-weight: bold; min-width: 50px; }
+        .ep-divisor-vertical { width: 1px; height: 35px; background-color: #333; }
+        .ep-dados-conteudo { display: flex; flex-direction: column; gap: 4px; }
+        .ep-titulo-link { color: #fff; font-size: 0.95rem; font-weight: bold; text-decoration: underline; }
+        .ep-data-estreia { color: #666; font-size: 0.8rem; }
 
-        /* SEÇÃO DO PLAYER */
-        #telaPlayer { display: none; }
-        .btn-voltar-global { background-color: #312763; color: white; border: none; padding: 9px 18px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 15px; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-voltar-global:hover { background-color: #43358a; }
-        .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; border: 1px solid #1d173a; }
+        /* PLAYER */
+        .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; margin-top: 15px; }
         .wrapper-video-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        #mensagemNenhumResultado { display: none; padding: 20px; text-align: center; color: #aaa; font-weight: bold; }
-
-        @media (max-width: 600px) {
-            .bloco-detalhes-anime { flex-direction: column; align-items: center; text-align: center; }
-            .poster-anime { width: 130px; }
-            .sinopse-texto { text-align: center; }
-            .container-generos { justify-content: center; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- AVISO DE LANÇAMENTO ANIMADO NO TOPO -->
-    <div class="aviso-lancamento-topo" id="avisoNotificacaoTopo" onclick="abrirPlayer('f6eJfGMUlgo', 40)">
-        <i class="fa-solid fa-bell"></i> RECENTE: Clique aqui para abrir diretamente o Episódio 40! (Lançado em 23/05/2024)
-    </div>
-
-    <!-- BOX DE AVISO DE NOVA NOTIFICAÇÃO -->
-    <div class="modal-notificacao" id="boxNotificacaoInterativa">
-        <p><strong>E aí, meu povo! 😄</strong> Quer ficar sabendo na hora quando sair episódio novo?</p>
-        <div class="modal-botoes">
-            <button class="btn-modal btn-recusar" onclick="fecharModalNotificacao(false)">Não, valeu</button>
-            <button class="btn-modal btn-aceitar" onclick="fecharModalNotificacao(true)">Ôxe, quero sim!</button>
-        </div>
-    </div>
-
     <header>
-        <div class="header-esquerda" onclick="fecharPlayer()">
-            <img src="https://i.ibb.co/hFrhwNPv/1775870980776.png" alt="Logo" class="logo-site">
-            <span style="font-weight: bold; font-size: 1.15rem; margin-left: 5px;">Maloqueiro Piradão Online</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div class="search-container">
-                <input type="text" id="inputPesquisa" oninput="filtrarEpisodios()" placeholder="Pesquisar...">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <a href="https://ibb.co/603fj1wH" target="_blank">
-                <img src="https://i.ibb.co/1GDwFdQr/1781890896358.png" alt="Seu Personagem" class="perfil-usuario">
-            </a>
+        <button class="btn-menu-linhas" onclick="navegarPara('telaListaEps')"><i class="fa-solid fa-bars"></i></button>
+        <div class="logo-central-branding" onclick="navegarPara('telaHome')">MALOQUEIRO PIRADÃO</div>
+        <div class="container-busca-topo">
+            <input type="text" id="inputBuscarAnime" class="input-busca" placeholder="Buscar..." onkeypress="verificarEnterBusca(event)">
+            <button class="btn-pesquisa-topo" onclick="executarBuscaSite()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </header>
 
+    <div class="barra-alfabetica">
+        <span class="letra-filtro ativa" onclick="navegarPara('telaHome')">ALL</span>
+        <span class="letra-filtro" onclick="navegarPara('telaListaEps')">M</span>
+    </div>
+
     <div class="container">
 
-        <!-- TELA DO PLAYER -->
-        <section id="telaPlayer">
-            <button class="btn-voltar-global" onclick="fecharPlayer()"><i class="fa-solid fa-arrow-left"></i> Voltar para a Lista</button>
-            <div class="titulo-secao-topo" id="tituloDoVideoRodando">Assistir Vídeo</div>
-            <div class="wrapper-video-player">
-                <iframe id="iframeVideoCanal" src="" allowfullscreen></iframe>
+        <section id="telaHome" class="secao-layout ativa">
+            <div class="bloco-header-titulo">
+                <div class="titulo-decorado">MALOQUEIRO PIRADÃO</div>
+                <button class="btn-ver-mais" onclick="navegarPara('telaListaEps')">VER MAIS</button>
+            </div>
+            <div class="container-poster-destaque" onclick="navegarPara('telaListaEps')">
+                <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="poster-principal-imagem">
+                <div class="legenda-poster-clique">Maloqueiro Piradão</div>
+            </div>
+            <div class="bloco-header-titulo"><div class="titulo-decorado">Últimos Episódios</div></div>
+            <div class="grid-ultimos-episodios">
+                <div class="card-episodio-home" onclick="abrirPlayerDireto('fuMYbWdAk8Y', 41)">
+                    <div class="thumb-wrapper-home"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png"><span class="tag-legendado-home">Legendado</span></div>
+                    <div class="info-card-home"><h3 class="anime-nome">Maloqueiro Piradão</h3><p class="ep-numero">Episódio 41</p></div>
+                </div>
+                <div class="card-episodio-home" onclick="abrirPlayerDireto('QTeunNuI0NM', 72)">
+                    <div class="thumb-wrapper-home"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png"><span class="tag-legendado-home">Legendado</span></div>
+                    <div class="info-card-home"><h3 class="anime-nome">Maloqueiro Piradão</h3><p class="ep-numero">Episódio 72</p></div>
+                </div>
             </div>
         </section>
 
-        <!-- CONTEÚDO PRINCIPAL -->
-        <section id="telaPrincipal">
+        <section id="telaResultadoBusca" class="secao-layout">
+            <div class="texto-resultado-pesquisa">Você pesquisou por: <span id="termoPesquisadoAlvo">"Maloqueiro Piradão"</span></div>
+            <div id="containerResultadosEncontrados" class="container-lista-pesquisa"></div>
+        </section>
+
+        <section id="telaListaEps" class="secao-layout">
+            <button class="btn-voltar-topo" onclick="navegarPara('telaHome')"><i class="fa-solid fa-arrow-left"></i> Voltar para o Início</button>
+            <div class="bloco-seletor-temporada"><div class="numero-temporada-box">1</div><div class="texto-temporada-box">Temporada 1</div></div>
+            <div class="bloco-lista-completa" id="listaDeEpisodiosContainer"></div>
+        </section>
+
+        <section id="telaPlayer" class="secao-layout">
+            <button class="btn-voltar-topo" onclick="navegarPara('telaListaEps')"><i class="fa-solid fa-arrow-left"></i> Voltar para a Lista</button>
+            <h2 id="tituloVideoAtual" style="font-size: 1.2rem;">Assistindo</h2>
+            <div class="wrapper-video-player"><iframe id="iframeVideo" src="" allowfullscreen></iframe></div>
+        </section>
+
+    </div>
+
+    <script>
+        // Array compacto contendo todos os IDs fornecidos (inclusive os novos do 41 ao 72)
+        const listaEpisodiosDados = [
+            { ep: 1, id: "sk38dxNjJxY", data: "13 de abril de 2024" },
+            { ep: 2, id: "-hBlNzGUGIg", data: "14 de abril de 2024" },
+            { ep: 3, id: "orECJ_S0S3Q", data: "15 de abril de 2024" },
+            { ep: 4, id: "fPg26mBmDOg", data: "16 de abril de 2024" },
+            { ep: 41, id: "fuMYbWdAk8Y", data: "26 de junho de 2026" },
+            { ep: 42, id: "jAXNnal6oGY", data: "26 de junho de 2026" },
+            { ep: 43, id: "dHbZFPUnmlU", data: "26 de junho de 2026" },
+            { ep: 44, id: "pF4wyFxXz2E", data: "26 de junho de 2026" },
+            { ep: 45, id: "geDBhVvgRNU", data: "26 de junho de 2026" },
+            { ep: 46, id: "fRVra3Q3rec", data: "26 de junho de 2026" },
+            { ep: 47, id: "N0iUHPfj0ss", data: "26 de junho de 2026" },
+            { ep: 48, id: "Aq4jhIcPntw", data: "26 de junho de 2026" },
+            { ep: 49, id: "-5xq-xey7bA", data: "26 de junho de 2026" },
+            { ep: 50, id: "rgRdD4Fa4kc", data: "26 de junho de 2026" },
+            { ep: 51, id: "l88UFJvMYw4", data: "26 de junho de 2026" },
+            { ep: 52, id: "OA_Ckkts2-4", data: "26 de junho de 2026" },
+            { ep: 53, id: "3vpMFA-K-hs", data: "26 de junho de 2026" },
+            { ep: 54, id: "U6YP57H2gY0", data: "26 de junho de 2026" },
+            { ep: 55, id: "gt8XU6GKvq4", data: "26 de junho de 2026" },
+            { ep: 56, id: "lAZRgaJ_g3c", data: "26 de junho de 2026" },
+            { ep: 57, id: "oAZewCCeMXQ", data: "26 de junho de 2026" },
+            { ep: 58, id: "WMPrkMzTe8o", data: "26 de junho de 2026" },
+            { ep: 59, id: "2V219Bqngjw", data: "26 de junho de 2026" },
+            { ep: 60, id: "rmyGnPAEdno", data: "26 de junho de 2026" },
+            { ep: 61, id: "nHT7Qgzcla8", data: "26 de junho de 2026" },
+            { ep: 62, id: "YCnEnLKWGC8", data: "26 de junho de 2026" },
+            { ep: 63, id: "md1rYTJ7S_g", data: "26 de junho de 2026" },
+            { ep: 64, id: "yyKp6ixBbb8", data: "26 de junho de 2026" },
+            { ep: 65, id: "gwRAO-63pQM", data: "26 de junho de 2026" },
+            { ep: 66, id: "0BN1IN8S4A8", data: "26 de junho de 2026" },
+            { ep: 67, id: "e8FKpK2iGwg", data: "26 de junho de 2026" },
+            { ep: 68, id: "3a1nNLSZTHY", data: "26 de junho de 2026" },
+            { ep: 69, id: "NkuosQ8THUU", data: "26 de junho de 2026" },
+            { ep: 70, id: "IR_G3I6QSXs", data: "26 de junho de 2026" },
+            { ep: 71, id: "3Uj7awV5oi0", data: "26 de junho de 2026" },
+            { ep: 72, id: "QTeunNuI0NM", data: "26 de junho de 2026" }
+        ];
+
+        // Renderizador da lista completa de episódios
+        const containerLista = document.getElementById('listaDeEpisodiosContainer');
+        listaEpisodiosDados.forEach(item => {
+            containerLista.innerHTML += `
+                <div class="item-episodio" onclick="abrirPlayerDireto('${item.id}', ${item.ep})">
+                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
+                    <div class="ep-identificador">Ep - ${item.ep}</div>
+                    <div class="ep-divisor-vertical"></div>
+                    <div class="ep-dados-conteudo"><span class="ep-titulo-link">Episodio ${item.ep}</span><span class="ep-data-estreia">${item.data}</span></div>
+                </div>`;
+        });
+
+        function navegarPara(idTela) {
+            document.querySelectorAll('.secao-layout').forEach(t => t.classList.remove('ativa'));
+            document.getElementById(idTela).classList.add('ativa');
+            if (idTela !== 'telaPlayer') document.getElementById('iframeVideo').src = "";
+            window.scrollTo(0, 0);
+        }
+
+        function abrirPlayerDireto(idYoutube, numeroEp) {
+            navegarPara('telaPlayer');
+            document.getElementById('tituloVideoAtual').innerText = `Maloqueiro Piradão - Episódio ${numeroEp}`;
+            document.getElementById('iframeVideo').src = `https://www.youtube.com/embed/${idYoutube}?autoplay=1`;
+        }
+
+        // BUSCA REAL E RESPONSIVA IGUAL AO COMPORTAMENTO DO ANIME ONLINE
+        function ejecutarBuscaSite() {
+            const termoInput = document.getElementById('inputBuscarAnime').value.trim();
+            if(termoInput === "") return;
+
+            document.getElementById('termoPesquisadoAlvo').innerText = `"${termoInput}"`;
+            const containerResultados = document.getElementById('containerResultadosEncontrados');
             
-            <div class="bloco-detalhes-anime">
-                <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="poster-anime" alt="Poster">
-                <div class="info-detalhes">
-                    <h1 class="titulo-anime-info">O Maloqueiro Piradão</h1>
-                    <span class="ano-anime"><i class="fa-solid fa-calendar-days"></i> Criado em: 2024</span>
-                    <p class="sinopse-texto">
-                        A Saga Insana da Tsunade Peidona é o arco mais marcante do canal O Maloqueiro Piradão, criado por Leonardo. O projeto mistura humor, paródia e entertainment em vídeos que parecem episódios de uma série improvisada, sempre com estilo irreverente. Tsunade acabou virando protagonista ao transformar seus peidos em marca registrada do canal, surgindo nos momentos mais inesperados e arrancando gargalhadas de Whindersson, Felca e até do Xerife Woody. O sucesso foi tanto que a personagem ganhou um arco próprio, recheado de situações absurdas e hilárias. Além disso, os episódios acompanham viagens, histórias de Daniel, Andrezinho e Pedro, e batalhas criativas dentro do Minecraft — desde construções simples, como uma casa moderna, até invenções improváveis como uma Lamborghini ou uma caixa de som automática. O resultado é uma comédia espontânea e caótica, onde cada vídeo se transforma em uma nova aventura divertida.
-                    </p>
-                    <div class="container-generos">
-                        <span class="tag-genero">Comédia</span>
-                        <span class="tag-genero">Cotidiano</span>
-                        <span class="tag-genero">Humor</span>
-                        <span class="tag-genero">Família</span>
-                        <span class="tag-genero">Letra M</span>
-                    </div>
-                </div>
-            </div>
+            if(termoInput.toLowerCase().includes("maloqueiro") || termoInput.toLowerCase().includes("piradão") || termoInput.toLowerCase().includes("one") || termoInput.toLowerCase().includes("anime")) {
+                containerResultados.innerHTML = `
+                    <div class="resultado-item-linha" onclick="navegarPara('telaListaEps')">
+                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="resultado-capa-mini">
+                        <div class="resultado-info-texto">
+                            <div class="resultado-titulo-anime">Maloqueiro Piradão</div>
+                            <div class="resultado-estrela-nota"><i class="fa-solid fa-star"></i> 8.5</div>
+                        </div>
+                    </div>`;
+            } else {
+                containerResultados.innerHTML = `<p style="color: #666; padding-left:10px;">Nenhum resultado encontrado.</p>`;
+            }
+            navegarPara('telaResultadoBusca');
+        }
 
-            <div class="titulo-secao-topo">Todos episódios do Maloqueiro Piradão</div>
-            <div class="subtitulo-temporadas">Temporadas e Episódios</div>
-            
-            <div class="bloco-seletor-temporada">
-                <div class="numero-temporada-box">1</div>
-                <div class="texto-temporada-box">Temporada 1</div>
-            </div>
-            
-            <div id="mensagemNenhumResultado"><i class="fa-solid fa-circle-exclamation"></i> Nenhum episódio encontrado com esse termo.</div>
+        function verificarEnterBusca(e) {
+            if (e.key === 'Enter') ejecutarBuscaSite();
+        }
+    </script>
+</body>
+</html>
 
-            <div class="bloco-lista-completa" id="containerGeralEps">
-                
-                <!-- EPISÓDIO 1 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 1" onclick="abrirPlayer('sk38dxNjJxY', 1)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 1</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 1</span>
-                        <span class="ep-data-estreia">13 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 2 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 2" onclick="abrirPlayer('-hBlNzGUGIg', 2)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 2</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 2</span>
-                        <span class="ep-data-estreia">14 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 3 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 3" onclick="abrirPlayer('orECJ_S0S3Q', 3)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 3</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 3</span>
-                        <span class="ep-data-estreia">15 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 4 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 4" onclick="abrirPlayer('fPg26mBmDOg', 4)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 4</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 4</span>
-                        <span class="ep-data-estreia">16 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 5 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 5" onclick="abrirPlayer('y1iZJ0yKLog', 5)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 5</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 5</span>
-                        <span class="ep-data-estreia">17 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 6 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 6" onclick="abrirPlayer('Q9wx7co0_vs', 6)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 6</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 6</span>
-                        <span class="ep-data-estreia">18 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 7 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 7" onclick="abrirPlayer('QPvq4qTiq78', 7)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 7</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 7</span>
-                        <span class="ep-data-estreia">19 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 8 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 8" onclick="abrirPlayer('QN-apW9BKHY', 8)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 8</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 8</span>
-                        <span class="ep-data-estreia">20 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 9 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 9" onclick="abrirPlayer('TNW6z_fw-2s', 9)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 9</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 9</span>
-                        <span class="ep-data-estreia">21 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 10 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 10" onclick="abrirPlayer('fPPmk10cDp4', 10)">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 10</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 10</span>
-                        <span class="ep-data-estreia">23 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 11 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 11" onclick="abrirPlayer('7kDlpI1n9qw', 11)">
-                    <img src="https://i.ibb.co/gFTkrhkW/XRecorder-Edited-20260624-02.jpg" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - 11</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo">
-                        <span class="ep-titulo-link">Episodio 11</span>
-                        <span class="ep-data-estreia">24 de abril de 2024</span>
-                    </div>
-                </div>
-
-                <!-- EPISÓDIO 12 -->
-                <div class="item-episodio" data-busca="maloqueiro piradao 12" onclick
