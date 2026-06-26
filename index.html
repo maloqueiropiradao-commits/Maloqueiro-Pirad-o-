@@ -7,55 +7,25 @@
     <link rel="icon" href="https://i.ibb.co/zTXbHHxv/XRecorder-Edited-20260621-01.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0914;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            padding-bottom: 40px;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* HEADER E BUSCA */
-        header {
-            background-color: #0b0914;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            gap: 10px;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0b0914; color: #fff; margin: 0; padding: 0; padding-bottom: 40px; -webkit-tap-highlight-color: transparent; }
+        header { background-color: #0b0914; padding: 15px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 10px; }
         .btn-menu-linhas { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
         .logo-central-branding { font-size: 1.4rem; font-weight: 900; color: #bc3bfb; text-shadow: 0px 0px 8px rgba(188, 59, 251, 0.6); font-style: italic; letter-spacing: 1px; cursor: pointer; }
         .container-busca-topo { display: flex; align-items: center; background-color: #141125; border-radius: 4px; padding: 4px 8px; flex: 1; max-width: 250px; }
         .input-busca { background: none; border: none; color: white; outline: none; font-size: 0.9rem; width: 100%; }
         .btn-pesquisa-topo { background: none; border: none; color: #bc3bfb; font-size: 1.1rem; cursor: pointer; }
-
-        /* FILTRO ALFABÉTICO */
         .barra-alfabetica { display: flex; gap: 22px; padding: 10px 15px; overflow-x: auto; border-bottom: 1px solid #141125; scrollbar-width: none; }
-        .barra-alfabetica::-webkit-scrollbar { display: none; }
-        .letra-filtro { color: #6a5d93; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-decoration: none; }
+        .letra-filtro { color: #6a5d93; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
         .letra-filtro.ativa { color: #bc3bfb; border-bottom: 3px solid #bc3bfb; padding-bottom: 2px; }
-
         .container { max-width: 900px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         .secao-layout { display: none; }
         .secao-layout.ativa { display: block; }
-
-        /* TÍTULOS */
         .bloco-header-titulo { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; }
         .titulo-decorado { font-size: 1.2rem; font-weight: bold; color: #fff; border-left: 4px solid #bc3bfb; padding-left: 10px; }
         .btn-ver-mais { background-color: #8a63ff; color: white; border: none; padding: 6px 16px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; cursor: pointer; }
-
-        /* POSTER */
         .container-poster-destaque { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; cursor: pointer; }
         .poster-principal-imagem { width: 210px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .legenda-poster-clique { margin-top: 12px; font-size: 1.1rem; font-weight: bold; color: #fff; }
-
-        /* GRID HOME */
         .grid-ultimos-episodios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
         .card-episodio-home { cursor: pointer; display: flex; flex-direction: column; }
         .thumb-wrapper-home { position: relative; width: 100%; padding-top: 56.25%; background-color: #1c1a27; border-radius: 4px; overflow: hidden; }
@@ -64,8 +34,6 @@
         .info-card-home { text-align: center; margin-top: 8px; }
         .info-card-home .anime-nome { font-size: 0.9rem; font-weight: bold; margin: 0; }
         .info-card-home .ep-numero { font-size: 0.85rem; color: #aaa; margin: 3px 0 0 0; }
-
-        /* SEÇÃO DE RESULTADOS DA BUSCA */
         .texto-resultado-pesquisa { font-size: 1.1rem; color: #fff; margin-bottom: 25px; border-left: 4px solid #bc3bfb; padding-left: 10px; }
         .texto-resultado-pesquisa span { color: #8a63ff; font-weight: bold; }
         .container-lista-pesquisa { display: flex; flex-direction: column; gap: 15px; }
@@ -74,8 +42,6 @@
         .resultado-info-texto { display: flex; flex-direction: column; gap: 5px; }
         .resultado-titulo-anime { font-size: 1.1rem; font-weight: bold; color: #fff; }
         .resultado-estrela-nota { color: #f39c12; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
-
-        /* LISTA DE EPISÓDIOS */
         .btn-voltar-topo { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: bold; }
         .bloco-seletor-temporada { display: flex; background-color: #181818; margin-bottom: 3px; }
         .numero-temporada-box { background-color: #8a63ff; color: #fff; font-size: 1.8rem; font-weight: bold; width: 90px; display: flex; align-items: center; justify-content: center; padding: 15px 0; }
@@ -88,10 +54,33 @@
         .ep-dados-conteudo { display: flex; flex-direction: column; gap: 4px; }
         .ep-titulo-link { color: #fff; font-size: 0.95rem; font-weight: bold; text-decoration: underline; }
         .ep-data-estreia { color: #666; font-size: 0.8rem; }
-
-        /* PLAYER */
         .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; margin-top: 15px; }
         .wrapper-video-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* CONTROLADORES DE EPISÓDIO ROXOS (SETA ESQUERDA E DIREITA) */
+        .botoes-navegacao-player {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 0 5px;
+        }
+        .btn-seta-roxa {
+            background-color: #8a63ff;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        .btn-seta-roxa:hover { background-color: #bc3bfb; }
+        .btn-seta-roxa:disabled { background-color: #1f1a3a; color: #555; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -104,11 +93,6 @@
             <button class="btn-pesquisa-topo" onclick="executarBuscaSite()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </header>
-
-    <div class="barra-alfabetica">
-        <span class="letra-filtro ativa" onclick="navegarPara('telaHome')">ALL</span>
-        <span class="letra-filtro" onclick="navegarPara('telaListaEps')">M</span>
-    </div>
 
     <div class="container">
 
@@ -123,11 +107,11 @@
             </div>
             <div class="bloco-header-titulo"><div class="titulo-decorado">Últimos Episódios</div></div>
             <div class="grid-ultimos-episodios">
-                <div class="card-episodio-home" onclick="abrirPlayerDireto('fuMYbWdAk8Y', 41)">
+                <div class="card-episodio-home" onclick="carregarEpisodioPorIndex(4)">
                     <div class="thumb-wrapper-home"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png"><span class="tag-legendado-home">Legendado</span></div>
                     <div class="info-card-home"><h3 class="anime-nome">Maloqueiro Piradão</h3><p class="ep-numero">Episódio 41</p></div>
                 </div>
-                <div class="card-episodio-home" onclick="abrirPlayerDireto('QTeunNuI0NM', 72)">
+                <div class="card-episodio-home" onclick="carregarEpisodioPorIndex(listaEpisodiosDados.length - 1)">
                     <div class="thumb-wrapper-home"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png"><span class="tag-legendado-home">Legendado</span></div>
                     <div class="info-card-home"><h3 class="anime-nome">Maloqueiro Piradão</h3><p class="ep-numero">Episódio 72</p></div>
                 </div>
@@ -147,14 +131,27 @@
 
         <section id="telaPlayer" class="secao-layout">
             <button class="btn-voltar-topo" onclick="navegarPara('telaListaEps')"><i class="fa-solid fa-arrow-left"></i> Voltar para a Lista</button>
-            <h2 id="tituloVideoAtual" style="font-size: 1.2rem;">Assistindo</h2>
-            <div class="wrapper-video-player"><iframe id="iframeVideo" src="" allowfullscreen></iframe></div>
+            <h2 id="tituloVideoAtual" style="font-size: 1.2rem; border-left: 4px solid #bc3bfb; padding-left: 10px;">Assistindo</h2>
+            
+            <div class="wrapper-video-player">
+                <iframe id="iframeVideo" src="" allowfullscreen></iframe>
+            </div>
+
+            <div class="botoes-navegacao-player">
+                <button id="btnEpAnterior" class="btn-seta-roxa" onclick="mudarEpisodioNavegacao(-1)">
+                    <i class="fa-solid fa-arrow-left"></i> Anterior
+                </button>
+                <button id="btnEpProximo" class="btn-seta-roxa" onclick="mudarEpisodioNavegacao(1)">
+                    Próximo <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
         </section>
 
     </div>
 
     <script>
-        // Array compacto contendo todos os IDs fornecidos (inclusive os novos do 41 ao 72)
+        let indexEpisodioAtual = 0;
+
         const listaEpisodiosDados = [
             { ep: 1, id: "sk38dxNjJxY", data: "13 de abril de 2024" },
             { ep: 2, id: "-hBlNzGUGIg", data: "14 de abril de 2024" },
@@ -194,11 +191,11 @@
             { ep: 72, id: "QTeunNuI0NM", data: "26 de junho de 2026" }
         ];
 
-        // Renderizador da lista completa de episódios
+        // Monta a lista completa
         const containerLista = document.getElementById('listaDeEpisodiosContainer');
-        listaEpisodiosDados.forEach(item => {
+        listaEpisodiosDados.forEach((item, index) => {
             containerLista.innerHTML += `
-                <div class="item-episodio" onclick="abrirPlayerDireto('${item.id}', ${item.ep})">
+                <div class="item-episodio" onclick="carregarEpisodioPorIndex(${index})">
                     <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
                     <div class="ep-identificador">Ep - ${item.ep}</div>
                     <div class="ep-divisor-vertical"></div>
@@ -213,21 +210,36 @@
             window.scrollTo(0, 0);
         }
 
-        function abrirPlayerDireto(idYoutube, numeroEp) {
+        // CONTROLADOR DE ATUALIZAÇÃO DO PLAYER REFRESH-FREE
+        function carregarEpisodioPorIndex(index) {
+            indexEpisodioAtual = index;
+            const objEp = listaEpisodiosDados[index];
+            
             navegarPara('telaPlayer');
-            document.getElementById('tituloVideoAtual').innerText = `Maloqueiro Piradão - Episódio ${numeroEp}`;
-            document.getElementById('iframeVideo').src = `https://www.youtube.com/embed/${idYoutube}?autoplay=1`;
+            document.getElementById('tituloVideoAtual').innerText = `Maloqueiro Piradão - Episódio ${objEp.ep}`;
+            document.getElementById('iframeVideo').src = `https://www.youtube.com/embed/${objEp.id}?autoplay=1`;
+            
+            // Habilita ou desabilita as setas se for o primeiro ou último ep
+            document.getElementById('btnEpAnterior').disabled = (index === 0);
+            document.getElementById('btnEpProximo').disabled = (index === listaEpisodiosDados.length - 1);
         }
 
-        // BUSCA REAL E RESPONSIVA IGUAL AO COMPORTAMENTO DO ANIME ONLINE
-        function ejecutarBuscaSite() {
+        // FUNÇÃO DE TROCA COM AS SETAS
+        function mudarEpisodioNavegacao(direcao) {
+            let novoIndex = indexEpisodioAtual + direcao;
+            if (novoIndex >= 0 && novoIndex < listaEpisodiosDados.length) {
+                carregarEpisodioPorIndex(novoIndex);
+            }
+        }
+
+        function executarBuscaSite() {
             const termoInput = document.getElementById('inputBuscarAnime').value.trim();
             if(termoInput === "") return;
 
             document.getElementById('termoPesquisadoAlvo').innerText = `"${termoInput}"`;
             const containerResultados = document.getElementById('containerResultadosEncontrados');
             
-            if(termoInput.toLowerCase().includes("maloqueiro") || termoInput.toLowerCase().includes("piradão") || termoInput.toLowerCase().includes("one") || termoInput.toLowerCase().includes("anime")) {
+            if(termoInput.toLowerCase().includes("maloqueiro") || termoInput.toLowerCase().includes("piradão") || termoInput.toLowerCase().includes("anime")) {
                 containerResultados.innerHTML = `
                     <div class="resultado-item-linha" onclick="navegarPara('telaListaEps')">
                         <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="resultado-capa-mini">
@@ -242,10 +254,7 @@
             navegarPara('telaResultadoBusca');
         }
 
-        function verificarEnterBusca(e) {
-            if (e.key === 'Enter') ejecutarBuscaSite();
-        }
+        function verificarEnterBusca(e) { if (e.key === 'Enter') executarBuscaSite(); }
     </script>
 </body>
 </html>
-
