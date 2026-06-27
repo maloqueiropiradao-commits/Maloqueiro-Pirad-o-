@@ -143,7 +143,6 @@
         let indexEpisodioAtual = 0;
         let telaOrigemPlayer = 'telaListaEps';
 
-        // Banco de dados central unificado e limpo - sem cortes, do 1 ao 72 completo
         const listaEpisodiosDados = [
             { ep: 1, id: "sk38dxNjJxY", data: "13 de abril de 2024" },
             { ep: 2, id: "-hBlNzGUGIg", data: "14 de abril de 2024" },
@@ -219,13 +218,11 @@
             { ep: 72, id: "QTeunNuI0NM", data: "26 de junho de 2026" }
         ];
 
-        // Inicializar e preencher layouts na inicialização
         window.addEventListener('DOMContentLoaded', () => {
             gerarUltimosEpisodiosHome();
             carregarListaDeEpisodiosPadrao(listaEpisodiosDados);
         });
 
-        // Preenche de forma bem completa a seção de Últimos Episódios da Home (Exibe os 8 mais recentes)
         function gerarUltimosEpisodiosHome() {
             const container = document.getElementById('gridUltimosEpsContainer');
             container.innerHTML = "";
@@ -248,13 +245,14 @@
             }
         }
 
-        // Renderiza a lista estruturada sem cards de anime, apenas as linhas de episódios
         function carregarListaDeEpisodiosPadrao(arrayDados) {
             const containerLista = document.getElementById('listaDeEpisodiosContainer');
             containerLista.innerHTML = "";
-            arrayDados.forEach((item, index) => {
+            arrayDados.forEach((item) => {
+                // Descobrir o índice real no array global correspondente ao número do episódio
+                const indexReal = listaEpisodiosDados.findIndex(e => e.ep === item.ep);
                 containerLista.innerHTML += `
-                    <div class="item-episodio" onclick="carregarEpisodioPlayer(${index}, 'telaListaEps')">
+                    <div class="item-episodio" onclick="carregarEpisodioPlayer(${indexReal}, 'telaListaEps')">
                         <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
                         <div class="ep-identificador">Ep - ${item.ep}</div>
                         <div class="ep-divisor-vertical"></div>
@@ -266,7 +264,6 @@
             });
         }
 
-        // Ações de Navegação e Menu Lateral
         function abrirMenuLateral() {
             document.getElementById('menuLateralContainer').classList.add('aberto');
             document.getElementById('overlayMenu').style.display = 'block';
@@ -281,4 +278,11 @@
             document.querySelectorAll('.secao-layout').forEach(t => t.classList.remove('ativa'));
             document.getElementById(idTela).classList.add('ativa');
             if (idTela !== 'telaPlayer') document.getElementById('iframeVideo').src = "";
-            fecharMe
+            fecharMenuLateral();
+            window.scrollTo(0, 0);
+        }
+
+        function cliqueVerMais() {
+            const btn = document.getElementById('btnVerMaisHome');
+            btn.classList.add('clicado');
+    
