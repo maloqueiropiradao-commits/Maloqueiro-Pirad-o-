@@ -14,83 +14,90 @@
         .container-busca-topo { display: flex; align-items: center; background-color: #141125; border-radius: 4px; padding: 4px 8px; flex: 1; max-width: 250px; }
         .input-busca { background: none; border: none; color: white; outline: none; font-size: 0.9rem; width: 100%; }
         .btn-pesquisa-topo { background: none; border: none; color: #bc3bfb; font-size: 1.1rem; cursor: pointer; }
-        .barra-alfabetica { display: flex; gap: 22px; padding: 10px 15px; overflow-x: auto; border-bottom: 1px solid #141125; scrollbar-width: none; }
-        .letra-filtro { color: #6a5d93; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
-        .letra-filtro.ativa { color: #bc3bfb; border-bottom: 3px solid #bc3bfb; padding-bottom: 2px; }
         .container { max-width: 900px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
+        
+        /* Menu Lateral Estilizado */
+        .menu-lateral { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background-color: #0b0914; box-shadow: 4px 0 15px rgba(0,0,0,0.7); z-index: 200; transition: left 0.3s ease; box-sizing: border-box; padding: 20px 15px; overflow-y: auto; }
+        .menu-lateral.aberto { left: 0; }
+        .menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #1c1a27; padding-bottom: 10px; }
+        .menu-item-link { display: block; color: #fff; text-decoration: none; font-size: 1.1rem; font-weight: 600; padding: 12px 10px; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+        .menu-item-link:hover { background-color: #141125; color: #bc3bfb; }
+        .menu-sub-item { display: block; color: #aaa; text-decoration: none; font-size: 0.95rem; padding: 10px 10px 10px 25px; cursor: pointer; }
+        .menu-sub-item:hover { color: #bc3bfb; }
+        .menu-secao-titulo { font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; padding: 15px 10px 5px 10px; }
+        .overlay-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 150; display: none; }
+        
+        /* Layouts de Seção */
         .secao-layout { display: none; }
         .secao-layout.ativa { display: block; }
         .bloco-header-titulo { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; }
         .titulo-decorado { font-size: 1.2rem; font-weight: bold; color: #fff; border-left: 4px solid #bc3bfb; padding-left: 10px; }
-        .btn-ver-mais { background-color: #8a63ff; color: white; border: none; padding: 6px 16px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; cursor: pointer; }
+        .btn-ver-mais { background-color: #8a63ff; color: white; border: none; padding: 8px 18px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; transition: background-color 0.2s; }
+        .btn-ver-mais:active, .btn-ver-mais.clicado { background-color: #bc3bfb; }
+        
         .container-poster-destaque { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; cursor: pointer; }
         .poster-principal-imagem { width: 210px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .legenda-poster-clique { margin-top: 12px; font-size: 1.1rem; font-weight: bold; color: #fff; }
+        
+        /* Grid mais preenchida de episódios na Home */
         .grid-ultimos-episodios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
-        .card-episodio-home { cursor: pointer; display: flex; flex-direction: column; }
+        .card-episodio-home { cursor: pointer; display: flex; flex-direction: column; background-color: #110e1e; padding: 8px; border-radius: 6px; }
         .thumb-wrapper-home { position: relative; width: 100%; padding-top: 56.25%; background-color: #1c1a27; border-radius: 4px; overflow: hidden; }
         .thumb-wrapper-home img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         .tag-legendado-home { position: absolute; bottom: 6px; right: 6px; background-color: #8a63ff; color: white; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 3px; }
-        .info-card-home { text-align: center; margin-top: 8px; }
-        .info-card-home .anime-nome { font-size: 0.9rem; font-weight: bold; margin: 0; }
+        .info-card-home { text-align: left; margin-top: 8px; padding: 0 4px; }
+        .info-card-home .anime-nome { font-size: 0.9rem; font-weight: bold; margin: 0; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .info-card-home .ep-numero { font-size: 0.85rem; color: #aaa; margin: 3px 0 0 0; }
-        .texto-resultado-pesquisa { font-size: 1.1rem; color: #fff; margin-bottom: 25px; border-left: 4px solid #bc3bfb; padding-left: 10px; }
-        .texto-resultado-pesquisa span { color: #8a63ff; font-weight: bold; }
-        .container-lista-pesquisa { display: flex; flex-direction: column; gap: 15px; }
-        .resultado-item-linha { display: flex; align-items: center; gap: 15px; cursor: pointer; background-color: #110e1e; padding: 10px; border-radius: 6px; }
-        .resultado-capa-mini { width: 70px; height: 100px; object-fit: cover; border-radius: 4px; }
-        .resultado-info-texto { display: flex; flex-direction: column; gap: 5px; }
-        .resultado-titulo-anime { font-size: 1.1rem; font-weight: bold; color: #fff; }
-        .resultado-estrela-nota { color: #f39c12; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
-        .btn-voltar-topo { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: bold; }
-        .bloco-seletor-temporada { display: flex; background-color: #181818; margin-bottom: 3px; }
-        .numero-temporada-box { background-color: #8a63ff; color: #fff; font-size: 1.8rem; font-weight: bold; width: 90px; display: flex; align-items: center; justify-content: center; padding: 15px 0; }
-        .texto-temporada-box { color: #999; font-size: 1.1rem; display: flex; align-items: center; padding-left: 20px; flex: 1; }
-        .bloco-lista-completa { display: flex; flex-direction: column; background-color: #000; }
-        .item-episodio { display: flex; align-items: center; padding: 12px 10px; border-bottom: 1px solid #1c1c1c; cursor: pointer; gap: 15px; }
-        .capa-miniatura-ep { width: 100px; height: 58px; object-fit: cover; }
-        .ep-identificador { color: #aaa; font-size: 1rem; font-weight: bold; min-width: 50px; }
-        .ep-divisor-vertical { width: 1px; height: 35px; background-color: #333; }
+        
+        /* Listas de episódios completas e infinitas */
+        .bloco-seletor-temporada { display: flex; background-color: #141125; margin-bottom: 3px; border-radius: 4px 4px 0 0; }
+        .numero-temporada-box { background-color: #8a63ff; color: #fff; font-size: 1.5rem; font-weight: bold; width: 80px; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
+        .texto-temporada-box { color: #fff; font-size: 1.1rem; display: flex; align-items: center; padding-left: 20px; flex: 1; font-weight: bold; }
+        .bloco-lista-completa { display: flex; flex-direction: column; background-color: #110e1e; border-radius: 0 0 4px 4px; overflow: hidden; }
+        .item-episodio { display: flex; align-items: center; padding: 12px 10px; border-bottom: 1px solid #1c1a27; cursor: pointer; gap: 15px; transition: background 0.2s; }
+        .item-episodio:hover { background-color: #1c1a27; }
+        .capa-miniatura-ep { width: 90px; height: 52px; object-fit: cover; border-radius: 3px; }
+        .ep-identificador { color: #bc3bfb; font-size: 0.95rem; font-weight: bold; min-width: 55px; }
+        .ep-divisor-vertical { width: 1px; height: 30px; background-color: #25213b; }
         .ep-dados-conteudo { display: flex; flex-direction: column; gap: 4px; }
-        .ep-titulo-link { color: #fff; font-size: 0.95rem; font-weight: bold; text-decoration: underline; }
+        .ep-titulo-link { color: #fff; font-size: 0.95rem; font-weight: bold; }
         .ep-data-estreia { color: #666; font-size: 0.8rem; }
-        .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; margin-top: 15px; }
+        
+        /* Player */
+        .wrapper-video-player { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; border-radius: 8px; overflow: hidden; margin-top: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
         .wrapper-video-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        /* CONTROLADORES DE EPISÓDIO ROXOS (SETA ESQUERDA E DIREITA) */
-        .botoes-navegacao-player {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding: 0 5px;
-        }
-        .btn-seta-roxa {
-            background-color: #8a63ff;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.2s;
-        }
-        .btn-seta-roxa:hover { background-color: #bc3bfb; }
+        .botoes-navegacao-player { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 0 5px; }
+        .btn-seta-roxa { background-color: #8a63ff; color: #fff; border: none; padding: 12px 24px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
         .btn-seta-roxa:disabled { background-color: #1f1a3a; color: #555; cursor: not-allowed; }
+        .btn-voltar-topo { background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: bold; }
+        .btn-voltar-topo:hover { color: #bc3bfb; }
     </style>
 </head>
 <body>
 
+    <div class="overlay-menu" id="overlayMenu" onclick="fecharMenuLateral()"></div>
+
+    <div class="menu-lateral" id="menuLateralContainer">
+        <div class="menu-header">
+            <span style="font-weight: 900; color: #bc3bfb;">NAVEGAÇÃO</span>
+            <button class="btn-menu-linhas" onclick="fecharMenuLateral()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="menu-item-link" onclick="navegarPara('telaHome')">Início</div>
+        
+        <div class="menu-secao-titulo">Lista da Série</div>
+        <div class="menu-sub-item" onclick="abrirSecaoLegendado()">Legendado</div>
+        
+        <div class="menu-item-link" onclick="navegarPara('telaListaEps')">Episódios</div>
+        <div class="menu-item-link" onclick="abrirSecaoDestaques()">Os Mais Destaques</div>
+        <div class="menu-item-link" onclick="navegarPara('telaListaEps')">Gêneros</div>
+    </div>
+
     <header>
-        <button class="btn-menu-linhas" onclick="navegarPara('telaListaEps')"><i class="fa-solid fa-bars"></i></button>
+        <button class="btn-menu-linhas" onclick="abrirMenuLateral()"><i class="fa-solid fa-bars"></i></button>
         <div class="logo-central-branding" onclick="navegarPara('telaHome')">MALOQUEIRO PIRADÃO</div>
         <div class="container-busca-topo">
-            <input type="text" id="inputBuscarAnime" class="input-busca" placeholder="Buscar..." onkeypress="verificarEnterBusca(event)">
-            <button class="btn-pesquisa-topo" onclick="executarBuscaSite()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" id="inputBuscarAnime" class="input-busca" placeholder="Buscar episódio...">
+            <button class="btn-pesquisa-topo"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </header>
 
@@ -98,52 +105,35 @@
 
         <section id="telaHome" class="secao-layout ativa">
             <div class="bloco-header-titulo">
-                <div class="titulo-decorado">MALOQUEIRO PIRADÃO</div>
-                <button class="btn-ver-mais" onclick="navegarPara('telaListaEps')">VER MAIS</button>
+                <div class="titulo-decorado">Maloqueiro Piradão</div>
+                <button id="btnVerMaisHome" class="btn-ver-mais" onclick="cliqueVerMais()">VER MAIS</button>
             </div>
-            <div class="container-poster-destaque" onclick="navegarPara('telaListaEps')">
+            <div class="container-poster-destaque" onclick="cliqueVerMais()">
                 <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="poster-principal-imagem">
-                <div class="legenda-poster-clique">Maloqueiro Piradão</div>
+                <div class="legenda-poster-clique">Maloqueiro Piradão - Temporada 1</div>
             </div>
-            <div class="bloco-header-titulo"><div class="titulo-decorado">Últimos Episódios</div></div>
-            <div class="grid-ultimos-episodios">
-                <div class="card-episodio-home" onclick="carregarEpisodioPorIndex(4)">
-                    <div class="thumb-wrapper-home"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png"><span class="tag-legendado-home">Legendado</span></div>
-                    <div class="info-card-home"><h3 class="anime-nome">Maloqueiro Piradão</h3><p class="ep-numero">Episódio 41</p></div>
-                </div>
-                <div class="card-episodio-home" onclick="carregarEpisodioPorIndex(listaEpisodiosDados.length - 1)">
-                    <div class="thumb-wrapper-home"><img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png"><span class="tag-legendado-home">Legendado</span></div>
-                    <div class="info-card-home"><h3 class="anime-nome">Maloqueiro Piradão</h3><p class="ep-numero">Episódio 72</p></div>
-                </div>
+            <div class="bloco-header-titulo">
+                <div class="titulo-decorado">Últimos Episódios</div>
             </div>
-        </section>
-
-        <section id="telaResultadoBusca" class="secao-layout">
-            <div class="texto-resultado-pesquisa">Você pesquisou por: <span id="termoPesquisadoAlvo">"Maloqueiro Piradão"</span></div>
-            <div id="containerResultadosEncontrados" class="container-lista-pesquisa"></div>
+            <div id="gridUltimosEpsContainer" class="grid-ultimos-episodios"></div>
         </section>
 
         <section id="telaListaEps" class="secao-layout">
-            <button class="btn-voltar-topo" onclick="navegarPara('telaHome')"><i class="fa-solid fa-arrow-left"></i> Voltar para o Início</button>
-            <div class="bloco-seletor-temporada"><div class="numero-temporada-box">1</div><div class="texto-temporada-box">Temporada 1</div></div>
+            <button class="btn-voltar-topo" onclick="navegarPara('telaHome')"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+            <div class="bloco-header-titulo">
+                <div class="titulo-decorado" id="tituloSecaoDinamica">Episódios</div>
+            </div>
+            <div class="bloco-seletor-temporada"><div class="numero-temporada-box">1</div><div class="texto-temporada-box">Temporada Completa</div></div>
             <div class="bloco-lista-completa" id="listaDeEpisodiosContainer"></div>
         </section>
 
         <section id="telaPlayer" class="secao-layout">
-            <button class="btn-voltar-topo" onclick="navegarPara('telaListaEps')"><i class="fa-solid fa-arrow-left"></i> Voltar para a Lista</button>
+            <button class="btn-voltar-topo" onclick="voltarParaListaOrigem()"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
             <h2 id="tituloVideoAtual" style="font-size: 1.2rem; border-left: 4px solid #bc3bfb; padding-left: 10px;">Assistindo</h2>
-            
-            <div class="wrapper-video-player">
-                <iframe id="iframeVideo" src="" allowfullscreen></iframe>
-            </div>
-
+            <div class="wrapper-video-player"><iframe id="iframeVideo" src="" allowfullscreen></iframe></div>
             <div class="botoes-navegacao-player">
-                <button id="btnEpAnterior" class="btn-seta-roxa" onclick="mudarEpisodioNavegacao(-1)">
-                    <i class="fa-solid fa-arrow-left"></i> Anterior
-                </button>
-                <button id="btnEpProximo" class="btn-seta-roxa" onclick="mudarEpisodioNavegacao(1)">
-                    Próximo <i class="fa-solid fa-arrow-right"></i>
-                </button>
+                <button id="btnEpAnterior" class="btn-seta-roxa" onclick="mudarEpisodioNavegacao(-1)"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+                <button id="btnEpProximo" class="btn-seta-roxa" onclick="mudarEpisodioNavegacao(1)">Próximo <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </section>
 
@@ -151,12 +141,50 @@
 
     <script>
         let indexEpisodioAtual = 0;
+        let telaOrigemPlayer = 'telaListaEps';
 
+        // Banco de dados central unificado e limpo - sem cortes, do 1 ao 72 completo
         const listaEpisodiosDados = [
             { ep: 1, id: "sk38dxNjJxY", data: "13 de abril de 2024" },
             { ep: 2, id: "-hBlNzGUGIg", data: "14 de abril de 2024" },
             { ep: 3, id: "orECJ_S0S3Q", data: "15 de abril de 2024" },
             { ep: 4, id: "fPg26mBmDOg", data: "16 de abril de 2024" },
+            { ep: 5, id: "y1iZJ0yKLog", data: "17 de abril de 2024" },
+            { ep: 6, id: "Q9wx7co0_vs", data: "18 de abril de 2024" },
+            { ep: 7, id: "QPvq4qTiq78", data: "19 de abril de 2024" },
+            { ep: 8, id: "QN-apW9BKHY", data: "20 de abril de 2024" },
+            { ep: 9, id: "TNW6z_fw-2s", data: "21 de abril de 2024" },
+            { ep: 10, id: "fPPmk10cDp4", data: "23 de abril de 2024" },
+            { ep: 11, id: "7kDlpI1n9qw", data: "24 de abril de 2024" },
+            { ep: 12, id: "EHnJP9b-YPY", data: "25 de abril de 2024" },
+            { ep: 13, id: "Cm1wIsqO86o", data: "26 de abril de 2024" },
+            { ep: 14, id: "l_3428W9fbM", data: "27 de abril de 2024" },
+            { ep: 15, id: "wzidqo2d-t4", data: "28 de abril de 2024" },
+            { ep: 16, id: "4FlsIEojkWc", data: "29 de abril de 2024" },
+            { ep: 17, id: "e7Q98yrucGg", data: "30 de abril de 2024" },
+            { ep: 18, id: "6F16VwPIp6Q", data: "01 de maio de 2024" },
+            { ep: 19, id: "TjyKYQ7i8hU", data: "02 de maio de 2024" },
+            { ep: 20, id: "LWDLNl7lvN0", data: "03 de maio de 2024" },
+            { ep: 21, id: "H62nZF7IdGU", data: "04 de maio de 2024" },
+            { ep: 22, id: "v_5Dose5_bY", data: "05 de maio de 2024" },
+            { ep: 23, id: "3Ow_m2wSljc", data: "06 de maio de 2024" },
+            { ep: 24, id: "HsgapVTAsPg", data: "07 de maio de 2024" },
+            { ep: 25, id: "-1D4VFxFjo8", data: "08 de maio de 2024" },
+            { ep: 26, id: "FasB2gJfYMg", data: "09 de maio de 2024" },
+            { ep: 27, id: "ZCJL_C3h1HY", data: "10 de maio de 2024" },
+            { ep: 28, id: "fnvdC2Xw_mw", data: "11 de maio de 2024" },
+            { ep: 29, id: "F-HBmb8EoHQ", data: "12 de maio de 2024" },
+            { ep: 30, id: "DEGmJqYohAU", data: "13 de maio de 2024" },
+            { ep: 31, id: "39W4jFRxGd8", data: "14 de maio de 2024" },
+            { ep: 32, id: "aL0_K8tIrWk", data: "15 de maio de 2024" },
+            { ep: 33, id: "BerTOsindtc", data: "16 de maio de 2024" },
+            { ep: 34, id: "84BcQGGkw_E", data: "17 de maio de 2024" },
+            { ep: 35, id: "qHJRXw8ajKo", data: "18 de maio de 2024" },
+            { ep: 36, id: "lU1bjkbJLPc", data: "19 de maio de 2024" },
+            { ep: 37, id: "cKQGYVuYYLk", data: "20 de maio de 2024" },
+            { ep: 38, id: "M4qap9ILVSI", data: "21 de maio de 2024" },
+            { ep: 39, id: "lZooMFrmjYA", data: "22 de maio de 2024" },
+            { ep: 40, id: "f6eJfGMUlgo", data: "23 de maio de 2024" },
             { ep: 41, id: "fuMYbWdAk8Y", data: "26 de junho de 2026" },
             { ep: 42, id: "jAXNnal6oGY", data: "26 de junho de 2026" },
             { ep: 43, id: "dHbZFPUnmlU", data: "26 de junho de 2026" },
@@ -191,70 +219,66 @@
             { ep: 72, id: "QTeunNuI0NM", data: "26 de junho de 2026" }
         ];
 
-        // Monta a lista completa
-        const containerLista = document.getElementById('listaDeEpisodiosContainer');
-        listaEpisodiosDados.forEach((item, index) => {
-            containerLista.innerHTML += `
-                <div class="item-episodio" onclick="carregarEpisodioPorIndex(${index})">
-                    <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
-                    <div class="ep-identificador">Ep - ${item.ep}</div>
-                    <div class="ep-divisor-vertical"></div>
-                    <div class="ep-dados-conteudo"><span class="ep-titulo-link">Episodio ${item.ep}</span><span class="ep-data-estreia">${item.data}</span></div>
-                </div>`;
+        // Inicializar e preencher layouts na inicialização
+        window.addEventListener('DOMContentLoaded', () => {
+            gerarUltimosEpisodiosHome();
+            carregarListaDeEpisodiosPadrao(listaEpisodiosDados);
         });
+
+        // Preenche de forma bem completa a seção de Últimos Episódios da Home (Exibe os 8 mais recentes)
+        function gerarUltimosEpisodiosHome() {
+            const container = document.getElementById('gridUltimosEpsContainer');
+            container.innerHTML = "";
+            const total = listaEpisodiosDados.length;
+            const quantidadeExibir = 8; 
+            
+            for (let i = total - 1; i >= total - quantidadeExibir && i >= 0; i--) {
+                const item = listaEpisodiosDados[i];
+                container.innerHTML += `
+                    <div class="card-episodio-home" onclick="carregarEpisodioPlayer(${i}, 'telaHome')">
+                        <div class="thumb-wrapper-home">
+                            <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png">
+                            <span class="tag-legendado-home">Legendado</span>
+                        </div>
+                        <div class="info-card-home">
+                            <h3 class="anime-nome">Maloqueiro Piradão</h3>
+                            <p class="ep-numero">Episódio ${item.ep}</p>
+                        </div>
+                    </div>`;
+            }
+        }
+
+        // Renderiza a lista estruturada sem cards de anime, apenas as linhas de episódios
+        function carregarListaDeEpisodiosPadrao(arrayDados) {
+            const containerLista = document.getElementById('listaDeEpisodiosContainer');
+            containerLista.innerHTML = "";
+            arrayDados.forEach((item, index) => {
+                containerLista.innerHTML += `
+                    <div class="item-episodio" onclick="carregarEpisodioPlayer(${index}, 'telaListaEps')">
+                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
+                        <div class="ep-identificador">Ep - ${item.ep}</div>
+                        <div class="ep-divisor-vertical"></div>
+                        <div class="ep-dados-conteudo">
+                            <span class="ep-titulo-link">Maloqueiro Piradão Episódio ${item.ep}</span>
+                            <span class="ep-data-estreia">${item.data}</span>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // Ações de Navegação e Menu Lateral
+        function abrirMenuLateral() {
+            document.getElementById('menuLateralContainer').classList.add('aberto');
+            document.getElementById('overlayMenu').style.display = 'block';
+        }
+
+        function fecharMenuLateral() {
+            document.getElementById('menuLateralContainer').classList.remove('aberto');
+            document.getElementById('overlayMenu').style.display = 'none';
+        }
 
         function navegarPara(idTela) {
             document.querySelectorAll('.secao-layout').forEach(t => t.classList.remove('ativa'));
             document.getElementById(idTela).classList.add('ativa');
             if (idTela !== 'telaPlayer') document.getElementById('iframeVideo').src = "";
-            window.scrollTo(0, 0);
-        }
-
-        // CONTROLADOR DE ATUALIZAÇÃO DO PLAYER REFRESH-FREE
-        function carregarEpisodioPorIndex(index) {
-            indexEpisodioAtual = index;
-            const objEp = listaEpisodiosDados[index];
-            
-            navegarPara('telaPlayer');
-            document.getElementById('tituloVideoAtual').innerText = `Maloqueiro Piradão - Episódio ${objEp.ep}`;
-            document.getElementById('iframeVideo').src = `https://www.youtube.com/embed/${objEp.id}?autoplay=1`;
-            
-            // Habilita ou desabilita as setas se for o primeiro ou último ep
-            document.getElementById('btnEpAnterior').disabled = (index === 0);
-            document.getElementById('btnEpProximo').disabled = (index === listaEpisodiosDados.length - 1);
-        }
-
-        // FUNÇÃO DE TROCA COM AS SETAS
-        function mudarEpisodioNavegacao(direcao) {
-            let novoIndex = indexEpisodioAtual + direcao;
-            if (novoIndex >= 0 && novoIndex < listaEpisodiosDados.length) {
-                carregarEpisodioPorIndex(novoIndex);
-            }
-        }
-
-        function executarBuscaSite() {
-            const termoInput = document.getElementById('inputBuscarAnime').value.trim();
-            if(termoInput === "") return;
-
-            document.getElementById('termoPesquisadoAlvo').innerText = `"${termoInput}"`;
-            const containerResultados = document.getElementById('containerResultadosEncontrados');
-            
-            if(termoInput.toLowerCase().includes("maloqueiro") || termoInput.toLowerCase().includes("piradão") || termoInput.toLowerCase().includes("anime")) {
-                containerResultados.innerHTML = `
-                    <div class="resultado-item-linha" onclick="navegarPara('telaListaEps')">
-                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="resultado-capa-mini">
-                        <div class="resultado-info-texto">
-                            <div class="resultado-titulo-anime">Maloqueiro Piradão</div>
-                            <div class="resultado-estrela-nota"><i class="fa-solid fa-star"></i> 8.5</div>
-                        </div>
-                    </div>`;
-            } else {
-                containerResultados.innerHTML = `<p style="color: #666; padding-left:10px;">Nenhum resultado encontrado.</p>`;
-            }
-            navegarPara('telaResultadoBusca');
-        }
-
-        function verificarEnterBusca(e) { if (e.key === 'Enter') executarBuscaSite(); }
-    </script>
-</body>
-</html>
+            fecharMe
