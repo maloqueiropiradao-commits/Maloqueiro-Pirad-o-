@@ -9,40 +9,38 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #0b0914; color: #fff; margin: 0; padding: 0; padding-bottom: 40px; -webkit-tap-highlight-color: transparent; }
         header { background-color: #0b0914; padding: 15px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 10px; }
-        .btn-menu-linhas { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .btn-menu-linhas { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; display: block !important; }
         .logo-central-branding { font-size: 1.25rem; font-weight: 900; color: #bc3bfb; text-shadow: 0px 0px 8px rgba(188, 59, 251, 0.6); font-style: italic; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
         
         .container-busca-topo { display: flex; align-items: center; background-color: #141125; border-radius: 6px; padding: 6px 10px; flex: 1; max-width: 220px; border: 1px solid #25213b; }
         .input-busca { background: none; border: none; color: white; outline: none; font-size: 0.95rem; width: 100%; }
         .btn-pesquisa-topo { background: none; border: none; color: #bc3bfb; font-size: 1.25rem; cursor: pointer; padding: 0 4px; display: flex; align-items: center; justify-content: center; }
-        .btn-pesquisa-topo:active { transform: scale(0.9); }
 
         .container { max-width: 900px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         
+        /* MENU LATERAL FIXADO */
         .menu-lateral { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background-color: #0b0914; box-shadow: 4px 0 15px rgba(0,0,0,0.7); z-index: 200; transition: left 0.3s ease; box-sizing: border-box; padding: 20px 15px; overflow-y: auto; }
-        .menu-lateral.aberto { left: 0; }
+        .menu-lateral.aberto { left: 0 !important; }
         .menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #1c1a27; padding-bottom: 10px; }
         .menu-seccao-titulo { font-size: 0.85rem; font-weight: 800; color: #bc3bfb; letter-spacing: 1px; margin: 15px 0 5px 10px; display: block; text-transform: uppercase; }
         .menu-item-link { display: block; color: #fff; text-decoration: none; font-size: 1.05rem; font-weight: 600; padding: 10px 12px; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
         .menu-item-link:hover { background-color: #141125; color: #bc3bfb; }
-        .menu-item-sub { padding-left: 25px; font-size: 0.95rem; color: #ccc; }
         .overlay-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 150; display: none; }
         
-        .secao-layout { display: none; }
-        .secao-layout.ativa { display: block; }
+        /* GERENCIADOR DE TELAS */
+        .secao-layout { display: none !important; }
+        .secao-layout.ativa { display: block !important; }
+        
         .bloco-header-titulo { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; }
         .titulo-decorado { font-size: 1.2rem; font-weight: bold; color: #fff; border-left: 4px solid #bc3bfb; padding-left: 10px; }
-        
         .texto-resultado-pesquisa { font-size: 1.1rem; font-weight: bold; color: #fff; margin: 15px 0 25px 0; border-left: 4px solid #bc3bfb; padding-left: 10px; }
         .btn-ver-mais { background-color: #8a63ff; color: white; border: none; padding: 8px 18px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
         
-        .container-resultado-pesquisa { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
-        .card-resultado-anime { background-color: #110e1e; width: 160px; border-radius: 6px; padding: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s; }
-        .card-resultado-anime:hover { transform: scale(1.03); }
+        .container-resultado-pesquisa { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
+        .card-resultado-anime { background-color: #110e1e; width: 210px; border-radius: 6px; padding: 10px; cursor: pointer; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
         .wrapper-imagem-resultado { position: relative; width: 100%; padding-top: 140%; background-color: #1c1a27; border-radius: 4px; overflow: hidden; }
         .wrapper-imagem-resultado img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        .tag-nota-resultado { position: absolute; bottom: 6px; right: 6px; background-color: rgba(0, 0, 0, 0.8); color: #ffca28; font-size: 0.75rem; font-weight: bold; padding: 3px 6px; border-radius: 3px; display: flex; align-items: center; gap: 3px; }
-        .titulo-resultado-anime { font-size: 0.9rem; font-weight: bold; margin: 8px 0 0 0; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .titulo-resultado-anime { font-size: 1.1rem; font-weight: bold; margin: 12px 0 4px 0; color: #fff; }
 
         .container-poster-destaque { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; cursor: pointer; }
         .poster-principal-imagem { width: 210px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
@@ -83,20 +81,11 @@
         
         <div class="menu-item-link" onclick="resetarHome()"><i class="fa-solid fa-house" style="margin-right: 8px;"></i> Início</div>
         
-        <span class="menu-seccao-titulo">Lista da Série</span>
-        <div class="menu-item-link menu-item-sub" onclick="cliqueVerMais()"><i class="fa-solid fa-closed-captioning" style="margin-right: 8px;"></i> Legendado</div>
-        
-        <div class="menu-item-link" onclick="carregaDestaques()"><i class="fa-solid fa-star" style="margin-right: 8px;"></i> Os Mais Destaques</div>
-        <div class="menu-item-link" onclick="carregaMelhoresEps()"><i class="fa-solid fa-heart" style="margin-right: 8px;"></i> Melhores Episódios</div>
-        
+        <span class="menu-seccao-titulo">Listas Especiais</span>
         <div class="menu-item-link" onclick="carregaEpsMaisAssistidos()"><i class="fa-solid fa-eye" style="margin-right: 8px;"></i> Mais Assistidos</div>
         <div class="menu-item-link" onclick="carregaEpsHypados()"><i class="fa-solid fa-bolt" style="margin-right: 8px;"></i> Hypados</div>
         <div class="menu-item-link" onclick="carregaEpsRanking()"><i class="fa-solid fa-trophy" style="margin-right: 8px;"></i> Ranking</div>
-        <div class="menu-item-link" onclick="carregaEpsEmAlta()"><i class="fa-solid fa-fire" style="margin-right: 8px;"></i> Em Alta</div>
         <div class="menu-item-link" onclick="carregaEpsMenosAssistidos()"><i class="fa-solid fa-arrow-down-short-wide" style="margin-right: 8px;"></i> Menos Assistidos</div>
-        
-        <span class="menu-seccao-titulo">Categorias</span>
-        <div class="menu-item-link" style="color: #aaa; cursor: default;"><i class="fa-solid fa-tags" style="margin-right: 8px;"></i> Gêneros</div>
     </div>
 
     <header>
@@ -117,10 +106,10 @@
             <div class="container-resultado-pesquisa">
                 <div class="card-resultado-anime" onclick="cliqueVerMais()">
                     <div class="wrapper-imagem-resultado">
-                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png">
-                        <span class="tag-nota-resultado"><i class="fa-solid fa-star"></i> 8.5</span>
+                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" alt="Pôster Maloqueiro Piradão">
                     </div>
                     <h3 class="titulo-resultado-anime">Maloqueiro Piradão</h3>
+                    <span style="font-size: 0.8rem; color: #bc3bfb; font-weight: bold;">Clique para ver os episódios</span>
                 </div>
             </div>
         </section>
@@ -163,7 +152,6 @@
     <script>
         let indexEpisodioAtual = 0;
         let telaOrigemPlayer = 'telaListaEps';
-        let baseEpisodiosAtiva = [];
         const todosEpisodios = [];
         
         const idsBaseAntiga = ["sk38dxNjJxY", "-hBlNzGUGIg", "orECJ_S0S3Q", "fPg26mBmDOg", "y1iZJ0yKLog", "Q9wx7co0_vs", "QPvq4qTiq78", "QN-apW9BKHY", "TNW6z_fw-2s", "fPPmk10cDp4"];
@@ -182,23 +170,39 @@
             todosEpisodios.push({
                 ep: i,
                 id: idVideo,
-                data: i >= 73 ? "27 de junho de 2026" : (i > 40 ? "26 de junho de 2026" : "13 de abril de 2024")
+                data: i >= 73 ? "27 de junho de 2026" : "13 de abril de 2024"
             });
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            baseEpisodiosAtiva = [...todosEpisodios];
             gerarUltimosEpisodiosHome();
-            carregarListaNaTela(todosEpisodios);
         });
 
-        function generarUltimosEpisodiosHome() {
+        function navegarPara(idTela) {
+            document.querySelectorAll('.secao-layout').forEach(t => t.classList.remove('ativa'));
+            document.getElementById(idTela).classList.add('ativa');
+            if (idTela !== 'telaPlayer') document.getElementById('iframeVideo').src = "";
+            fecharMenuLateral();
+            window.scrollTo(0, 0);
+        }
+
+        function abrirMenuLateral() {
+            document.getElementById('menuLateralContainer').classList.add('aberto');
+            document.getElementById('overlayMenu').style.display = 'block';
+        }
+
+        function fecharMenuLateral() {
+            document.getElementById('menuLateralContainer').classList.remove('aberto');
+            document.getElementById('overlayMenu').style.display = 'none';
+        }
+
+        function gerarUltimosEpisodiosHome() {
             const container = document.getElementById('gridUltimosEpsContainer');
             container.innerHTML = "";
             for (let i = 102; i >= 95; i--) {
                 const item = todosEpisodios[i];
                 container.innerHTML += `
-                    <div class="card-episodio-home" onclick="baseEpisodiosAtiva=[...todosEpisodios]; carregarEpisodioPlayer(${i}, 'telaHome')">
+                    <div class="card-episodio-home" onclick="carregarEpisodioPlayer(${i}, 'telaHome')">
                         <div class="thumb-wrapper-home">
                             <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png">
                             <span class="tag-legendado-home">Legendado</span>
@@ -229,45 +233,60 @@
             });
         }
 
-        // FUNÇÃO DE BUSCA CORRIGIDA COM A SUA MENSAGEM EXATA
+        // FUNÇÃO DE BUSCA ULTRA CORRIGIDA E ADAPTADA PARA TRAZER O POSTER SEMPRE
         function executarPesquisa() {
             const termoBusca = document.getElementById('inputBuscarAnime').value.trim();
-            if (termoBusca === "") return;
-
             const msgBox = document.getElementById('mensagemBusca');
             
-            // Se buscar por texto relacionado ao nome do anime
-            if (termoBusca.toLowerCase().includes("maloqueiro") || termoBusca.toLowerCase().includes("piradao") || termoBusca.toLowerCase().includes("piradão")) {
-                msgBox.innerHTML = `Você pesquisou por: <span style="color: #bc3bfb;">Maloqueiro Piradão</span>`;
-                navegarPara('telaResultadoBusca');
-            } else {
-                // Caso busque diretamente pelo número do episódio
+            // Se for um número direto, busca o episódio
+            if (termoBusca !== "" && !isNaN(termoBusca)) {
                 const resultadosFiltrados = todosEpisodios.filter(item => item.ep.toString() === termoBusca);
                 if(resultadosFiltrados.length > 0) {
-                    baseEpisodiosAtiva = [...resultadosFiltrados];
                     document.getElementById('tituloSecaoDinamica').innerText = "Resultados Encontrados";
                     document.getElementById('subtituloTemporadaBox').innerText = "Resultados da Pesquisa";
                     carregarListaNaTela(resultadosFiltrados);
                     navegarPara('telaListaEps');
-                } else {
-                    msgBox.innerHTML = `Nenhum resultado encontrado para: "${termoBusca}"`;
-                    navegarPara('telaResultadoBusca');
+                    return;
                 }
             }
+
+            // Para qualquer busca de texto ou campo vazio, exibe o Pôster do Maloqueiro Piradão
+            msgBox.innerHTML = `Você pesquisou por: <span style="color: #bc3bfb;">Maloqueiro Piradão</span>`;
+            navegarPara('telaResultadoBusca');
         }
 
-        // FUNÇÃO QUE ABRE TODOS OS 103 EPISÓDIOS (ACIONADA PELO PÔSTER)
         function cliqueVerMais() {
             document.getElementById('tituloSecaoDinamica').innerText = "Episódios";
             document.getElementById('subtituloTemporadaBox').innerText = "Temporada Completa";
-            baseEpisodiosAtiva = [...todosEpisodios]; // Restaura a lista completa
-            carregarListaNaTela(todosEpisodios); // Renderiza os 103 episódios
-            navegarPara('telaListaEps'); // Abre a tela da listagem
+            carregarListaNaTela(todosEpisodios);
+            navegarPara('telaListaEps');
         }
 
         function carregaEpsMaisAssistidos() {
             const maisAssistidos = todosEpisodios.filter(item => [2, 25, 74, 89, 98, 102].includes(item.ep));
-            baseEpisodiosAtiva = [...maisAssistidos];
             document.getElementById('tituloSecaoDinamica').innerText = "Mais Assistidos";
             document.getElementById('subtituloTemporadaBox').innerText = "Recorde de Visualizações";
-            carregarListaNaT
+            carregarListaNaTela(maisAssistidos);
+            navegarPara('telaListaEps');
+        }
+
+        function carregaEpsHypados() {
+            const hypados = todosEpisodios.filter(item => [73, 80, 85, 90, 96, 100].includes(item.ep));
+            document.getElementById('tituloSecaoDinamica').innerText = "Episódios Hypados";
+            document.getElementById('subtituloTemporadaBox').innerText = "Maior Expectativa da Comunidade";
+            carregarListaNaTela(hypados);
+            navegarPara('telaListaEps');
+        }
+
+        function carregaEpsRanking() {
+            const ranking = todosEpisodios.filter(item => [1, 50, 77, 95, 103].includes(item.ep));
+            document.getElementById('tituloSecaoDinamica').innerText = "Ranking da Série";
+            document.getElementById('subtituloTemporadaBox').innerText = "Top Avaliados";
+            carregarListaNaTela(ranking);
+            navegarPara('telaListaEps');
+        }
+
+        function carregaEpsMenosAssistidos() {
+            const menosAssistidos = todosEpisodios.filter(item => [3, 12, 18, 22, 35, 48].includes(item.ep));
+            document.getElementById('tituloSecaoDinamica').innerText = "Menos Assistidos";
+            document
