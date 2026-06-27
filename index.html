@@ -36,32 +36,28 @@
         .texto-resultado-pesquisa { font-size: 1.1rem; font-weight: bold; color: #fff; margin: 15px 0 25px 0; border-left: 4px solid #bc3bfb; padding-left: 10px; }
         .btn-ver-mais { background-color: #8a63ff; color: white; border: none; padding: 8px 18px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
         
-        /* NOVO PÔSTER REFORÇADO EM CSS (NUNCA FALHA) */
-        .poster-estilizado { width: 210px; height: 294px; background: linear-gradient(135deg, #bc3bfb 0%, #4a157d 100%); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0px 0px 20px rgba(188, 59, 251, 0.4); border: 2px solid #bc3bfb; text-align: center; padding: 15px; box-sizing: border-box; }
-        .poster-estilizado i { font-size: 3.5rem; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); margin-bottom: 15px; }
-        .poster-estilizado span { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
-
         .container-resultado-pesquisa { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
-        .card-resultado-anime { background-color: #110e1e; border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .card-resultado-anime { background-color: #110e1e; width: 210px; border-radius: 6px; padding: 10px; cursor: pointer; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .wrapper-imagem-resultado { position: relative; width: 100%; padding-top: 140%; background-color: #1c1a27; border-radius: 4px; overflow: hidden; }
+        .wrapper-imagem-resultado img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .titulo-resultado-anime { font-size: 1.1rem; font-weight: bold; margin: 12px 0 4px 0; color: #fff; }
 
         .container-poster-destaque { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; cursor: pointer; }
-        .legenda-poster-clique { margin-top: 12px; font-size: 1.1rem; font-weight: bold; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .poster-principal-imagem { width: 210px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .legenda-poster-clique { margin-top: 12px; font-size: 1.1rem; font-weight: bold; color: #fff; }
         
         .grid-ultimos-episodios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
         .card-episodio-home { cursor: pointer; display: flex; flex-direction: column; background-color: #110e1e; padding: 8px; border-radius: 6px; }
-        
-        /* MINIATURAS EM CSS NATIVO PARA EVITAR ERROS DE CARREGAMENTO */
-        .thumb-estilizada { width: 100%; height: 110px; background: linear-gradient(45deg, #141125, #25213b); border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid #3d355e; }
-        .thumb-estilizada i { font-size: 1.8rem; color: #bc3bfb; }
+        .thumb-wrapper-home { position: relative; width: 100%; padding-top: 56.25%; background-color: #1c1a27; border-radius: 4px; overflow: hidden; }
+        .thumb-wrapper-home img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         .tag-legendado-home { position: absolute; bottom: 6px; right: 6px; background-color: #8a63ff; color: white; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 3px; }
         
-        .capa-miniatura-css { width: 90px; height: 52px; background: linear-gradient(45deg, #1c1a27, #bc3bfb); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; }
-
         .bloco-seletor-temporada { display: flex; background-color: #141125; margin-bottom: 3px; border-radius: 4px 4px 0 0; }
         .numero-temporada-box { background-color: #8a63ff; color: #fff; font-size: 1.5rem; font-weight: bold; width: 80px; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
         .texto-temporada-box { color: #fff; font-size: 1.1rem; display: flex; align-items: center; padding-left: 20px; flex: 1; font-weight: bold; }
         .bloco-lista-completa { display: flex; flex-direction: column; background-color: #110e1e; border-radius: 0 0 4px 4px; overflow: hidden; }
         .item-episodio { display: flex; align-items: center; padding: 12px 10px; border-bottom: 1px solid #1c1a27; cursor: pointer; gap: 15px; }
+        .capa-miniatura-ep { width: 90px; height: 52px; object-fit: cover; border-radius: 3px; }
         .ep-identificador { color: #bc3bfb; font-size: 0.95rem; font-weight: bold; min-width: 55px; }
         .ep-divisor-vertical { width: 1px; height: 30px; background-color: #25213b; }
         
@@ -109,11 +105,11 @@
             <div id="mensagemBusca" class="texto-resultado-pesquisa"></div>
             <div class="container-resultado-pesquisa">
                 <div class="card-resultado-anime" onclick="cliqueVerMais()">
-                    <div class="poster-estilizado">
-                        <i class="fa-solid fa-circle-play"></i>
-                        <span>Maloqueiro<br>Piradão</span>
+                    <div class="wrapper-imagem-resultado">
+                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" alt="Pôster Maloqueiro Piradão">
                     </div>
-                    <span style="font-size: 0.85rem; color: #bc3bfb; font-weight: bold; margin-top: 5px;">Clique aqui para abrir os episódios</span>
+                    <h3 class="titulo-resultado-anime">Maloqueiro Piradão</h3>
+                    <span style="font-size: 0.8rem; color: #bc3bfb; font-weight: bold;">Clique para ver os episódios</span>
                 </div>
             </div>
         </section>
@@ -124,11 +120,8 @@
                 <button class="btn-ver-mais" onclick="cliqueVerMais()">VER MAIS</button>
             </div>
             <div class="container-poster-destaque" onclick="cliqueVerMais()">
-                <div class="poster-estilizado">
-                    <i class="fa-solid fa-circle-play"></i>
-                    <span>Maloqueiro<br>Piradão</span>
-                </div>
-                <div class="legenda-poster-clique">Temporada 1 (103 Episódios)</div>
+                <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="poster-principal-imagem">
+                <div class="legenda-poster-clique">Maloqueiro Piradão - Temporada 1</div>
             </div>
             <div class="bloco-header-titulo">
                 <div class="titulo-decorado">Últimos Episódios</div>
@@ -210,8 +203,8 @@
                 const item = todosEpisodios[i];
                 container.innerHTML += `
                     <div class="card-episodio-home" onclick="carregarEpisodioPlayer(${i}, 'telaHome')">
-                        <div class="thumb-estilizada">
-                            <i class="fa-solid fa-play"></i>
+                        <div class="thumb-wrapper-home">
+                            <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png">
                             <span class="tag-legendado-home">Legendado</span>
                         </div>
                         <div style="margin-top:8px; padding:0 4px;">
@@ -229,7 +222,7 @@
                 let realIndex = todosEpisodios.findIndex(e => e.ep === item.ep);
                 containerLista.innerHTML += `
                     <div class="item-episodio" onclick="carregarEpisodioPlayer(${realIndex}, 'telaListaEps')">
-                        <div class="capa-miniatura-css"><i class="fa-solid fa-play" style="font-size:1rem;"></i></div>
+                        <img src="https://i.ibb.co/RT5Zkxr0/1782073076111.png" class="capa-miniatura-ep">
                         <div class="ep-identificador">Ep - ${item.ep}</div>
                         <div class="ep-divisor-vertical"></div>
                         <div style="display:flex; flex-direction:column; gap:4px;">
@@ -290,4 +283,12 @@
             navegarPara('telaListaEps');
         }
 
-        function carregaEps
+        function carregaEpsMenosAssistidos() {
+            const menosAssistidos = todosEpisodios.filter(item => [3, 12, 18, 22, 35, 48].includes(item.ep));
+            document.getElementById('tituloSecaoDinamica').innerText = "Menos Assistidos";
+            document.getElementById('subtituloTemporadaBox').innerText = "Capítulos de Transição";
+            carregarListaNaTela(menosAssistidos);
+            navegarPara('telaListaEps');
+        }
+
+        function carregarEpisodioPlayer(index, origem) 
