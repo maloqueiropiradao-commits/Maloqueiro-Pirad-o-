@@ -98,8 +98,8 @@
         <button class="btn-menu-linhas" onclick="abrirMenuLateral()"><i class="fa-solid fa-bars"></i></button>
         <div class="logo-central-branding" onclick="navegarPara('telaHome')">MALOQUEIRO PIRADÃO</div>
         <div class="container-busca-topo">
-            <input type="text" id="inputBuscarAnime" class="input-busca" placeholder="Buscar episódio...">
-            <button class="btn-pesquisa-topo"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" id="inputBuscarAnime" class="input-busca" placeholder="Buscar episódio..." oninput="executarPesquisa()">
+            <button class="btn-pesquisa-topo" onclick="executarPesquisa()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </header>
 
@@ -144,11 +144,9 @@
         let telaOrigemPlayer = 'telaListaEps';
         let baseEpisodiosAtiva = [];
 
-        // Banco de Dados Otimizado (Contém IDs reais para funcionamento dos cliques e player)
         const todosEpisodios = [];
         const idsDisponiveis = ["sk38dxNjJxY", "-hBlNzGUGIg", "orECJ_S0S3Q", "fPg26mBmDOg", "y1iZJ0yKLog", "Q9wx7co0_vs", "QPvq4qTiq78", "QN-apW9BKHY", "TNW6z_fw-2s", "fPPmk10cDp4"];
         
-        // Gerador Dinâmico dos 72 Episódios Infinitos sem quebrar o chat
         for (let i = 1; i <= 72; i++) {
             let idVideo = idsDisponiveis[(i - 1) % idsDisponiveis.length];
             todosEpisodios.push({
@@ -167,7 +165,6 @@
         function gerarUltimosEpisodiosHome() {
             const container = document.getElementById('gridUltimosEpsContainer');
             container.innerHTML = "";
-            // Exibe os últimos 8 episódios de forma bem preenchida no topo da inicial
             for (let i = 71; i >= 64; i--) {
                 const item = todosEpisodios[i];
                 container.innerHTML += `
@@ -199,6 +196,22 @@
                         </div>
                     </div>`;
             });
+        }
+
+        // LÓGICA DE PESQUISA FUNCIONAL CORRIGIDA
+        function executarPesquisa() {
+            const termoBusca = document.getElementById('inputBuscarAnime').value.toLowerCase().trim();
+            
+            // Filtra os episódios se bater o número do ep ou o título
+            const resultadosFiltrados = todosEpisodios.filter(item => {
+                const termoCompleto = `maloqueiro piradao episodio ${item.ep}`;
+                return termoCompleto.includes(termoBusca) || item.ep.toString() === termoBusca;
+            });
+
+            baseEpisodiosAtiva = [...resultadosFiltrados];
+            document.getElementById('tituloSecaoDinamica').innerText = termoBusca !== "" ? `Resultados para: "${termoBusca}"` : "Episódios";
+            carregarListaNaTela(resultadosFiltrados);
+            navegarPara('telaListaEps');
         }
 
         function abrirMenuLateral() {
@@ -239,7 +252,6 @@
 
         function abrirSecaoDestaques() {
             document.getElementById('tituloSecaoDinamica').innerText = "Os Mais Destaques";
-            // Filtra e preenche com um bocado de episódios marcantes (do 40 ao 72)
             const maisDestaques = todosEpisodios.filter(item => item.ep >= 40);
             baseEpisodiosAtiva = [...maisDestaques];
             carregarListaNaTela(maisDestaques);
@@ -247,6 +259,7 @@
         }
 
         function carregarEpisodioPlayer(index, origem) {
+            if (baseEpisodiosAtiva.length === 0) return;
             indexEpisodioAtual = index;
             telaOrigemPlayer = origem;
             const objEp = baseEpisodiosAtiva[index];
