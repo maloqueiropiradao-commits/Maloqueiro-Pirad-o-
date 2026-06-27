@@ -11,9 +11,12 @@
         header { background-color: #0b0914; padding: 15px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 10px; }
         .btn-menu-linhas { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
         .logo-central-branding { font-size: 1.25rem; font-weight: 900; color: #bc3bfb; text-shadow: 0px 0px 8px rgba(188, 59, 251, 0.6); font-style: italic; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
-        .container-busca-topo { display: flex; align-items: center; background-color: #141125; border-radius: 4px; padding: 4px 8px; flex: 1; max-width: 200px; }
-        .input-busca { background: none; border: none; color: white; outline: none; font-size: 0.9rem; width: 100%; }
-        .btn-pesquisa-topo { background: none; border: none; color: #bc3bfb; font-size: 1.1rem; cursor: pointer; }
+        
+        .container-busca-topo { display: flex; align-items: center; background-color: #141125; border-radius: 6px; padding: 6px 10px; flex: 1; max-width: 220px; border: 1px solid #25213b; }
+        .input-busca { background: none; border: none; color: white; outline: none; font-size: 0.95rem; width: 100%; }
+        .btn-pesquisa-topo { background: none; border: none; color: #bc3bfb; font-size: 1.25rem; cursor: pointer; padding: 0 4px; display: flex; align-items: center; justify-content: center; }
+        .btn-pesquisa-topo:active { transform: scale(0.9); }
+
         .container { max-width: 900px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         
         .menu-lateral { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background-color: #0b0914; box-shadow: 4px 0 15px rgba(0,0,0,0.7); z-index: 200; transition: left 0.3s ease; box-sizing: border-box; padding: 20px 15px; overflow-y: auto; }
@@ -99,6 +102,7 @@
     <header>
         <button class="btn-menu-linhas" onclick="abrirMenuLateral()"><i class="fa-solid fa-bars"></i></button>
         <div class="logo-central-branding" onclick="resetarHome()">Maloqueiro Piradão Online</div>
+        
         <div class="container-busca-topo">
             <input type="text" id="inputBuscarAnime" class="input-busca" placeholder="Buscar..." onkeydown="if(event.key === 'Enter') executarPesquisa()">
             <button class="btn-pesquisa-topo" onclick="executarPesquisa()"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -225,16 +229,19 @@
             });
         }
 
+        // FUNÇÃO DE BUSCA CORRIGIDA COM A SUA MENSAGEM EXATA
         function executarPesquisa() {
             const termoBusca = document.getElementById('inputBuscarAnime').value.trim();
             if (termoBusca === "") return;
 
             const msgBox = document.getElementById('mensagemBusca');
             
+            // Se buscar por texto relacionado ao nome do anime
             if (termoBusca.toLowerCase().includes("maloqueiro") || termoBusca.toLowerCase().includes("piradao") || termoBusca.toLowerCase().includes("piradão")) {
                 msgBox.innerHTML = `Você pesquisou por: <span style="color: #bc3bfb;">Maloqueiro Piradão</span>`;
                 navegarPara('telaResultadoBusca');
             } else {
+                // Caso busque diretamente pelo número do episódio
                 const resultadosFiltrados = todosEpisodios.filter(item => item.ep.toString() === termoBusca);
                 if(resultadosFiltrados.length > 0) {
                     baseEpisodiosAtiva = [...resultadosFiltrados];
@@ -249,27 +256,18 @@
             }
         }
 
-        // CONTROLADORES FILTROS DINÂMICOS DAS NOVAS OPÇÕES
+        // FUNÇÃO QUE ABRE TODOS OS 103 EPISÓDIOS (ACIONADA PELO PÔSTER)
+        function cliqueVerMais() {
+            document.getElementById('tituloSecaoDinamica').innerText = "Episódios";
+            document.getElementById('subtituloTemporadaBox').innerText = "Temporada Completa";
+            baseEpisodiosAtiva = [...todosEpisodios]; // Restaura a lista completa
+            carregarListaNaTela(todosEpisodios); // Renderiza os 103 episódios
+            navegarPara('telaListaEps'); // Abre a tela da listagem
+        }
+
         function carregaEpsMaisAssistidos() {
             const maisAssistidos = todosEpisodios.filter(item => [2, 25, 74, 89, 98, 102].includes(item.ep));
             baseEpisodiosAtiva = [...maisAssistidos];
             document.getElementById('tituloSecaoDinamica').innerText = "Mais Assistidos";
             document.getElementById('subtituloTemporadaBox').innerText = "Recorde de Visualizações";
-            carregarListaNaTela(maisAssistidos);
-            navegarPara('telaListaEps');
-        }
-
-        function carregaEpsHypados() {
-            const hypados = todosEpisodios.filter(item => [73, 80, 85, 90, 96, 100].includes(item.ep));
-            baseEpisodiosAtiva = [...hypados];
-            document.getElementById('tituloSecaoDinamica').innerText = "Episódios Hypados";
-            document.getElementById('subtituloTemporadaBox').innerText = "Maior Expectativa da Comunidade";
-            carregarListaNaTela(hypados);
-            navegarPara('telaListaEps');
-        }
-
-        function carregaEpsRanking() {
-            const ranking = todosEpisodios.filter(item => [1, 50, 77, 95, 103].includes(item.ep));
-            baseEpisodiosAtiva = [...ranking];
-            document.getElementById('tituloSecaoDinamica').innerText = "Ranking da Série";
-            doc
+            carregarListaNaT
