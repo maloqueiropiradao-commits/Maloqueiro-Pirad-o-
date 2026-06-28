@@ -2,67 +2,33 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maloqueiro Piradão Online</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Maloqueiro Piradão</title>
     <style>
-        body { background-color: #06040a; color: #fff; margin: 0; font-family: sans-serif; }
-        header { padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #5a189a; }
-        .secao-layout { display: none; padding: 20px; }
-        .secao-layout.ativa { display: block; }
-        .menu-lateral { position: fixed; left: -300px; top: 0; width: 250px; height: 100%; background: #0f0b18; transition: 0.3s; z-index: 2000; padding: 20px; border-right: 1px solid #9d4edd; }
-        .menu-lateral.aberto { left: 0; }
-        .card-episodio-home { background: #0f0b18; padding: 15px; border-radius: 8px; border: 1px solid #5a189a; cursor: pointer; text-align: center; }
-        .btn-ver-mais { background: #9d4edd; border: none; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        body { background: #06040a; color: white; font-family: sans-serif; text-align: center; }
+        .item-ep { background: #1a1a2e; padding: 20px; margin: 10px; border-radius: 8px; cursor: pointer; border: 1px solid #9d4edd; }
     </style>
 </head>
 <body>
 
-    <!-- Menu Lateral -->
-    <div class="menu-lateral" id="menuLateralContainer">
-        <button onclick="fecharMenuLateral()">Fechar X</button>
-        <p>Menu do Maloqueiro</p>
+    <h1>Maloqueiro Piradão</h1>
+    <div id="listaDeEpisodios">
+        <!-- Os episódios vão aparecer aqui sozinhos -->
     </div>
 
-    <!-- Header -->
-    <header>
-        <button onclick="abrirMenuLateral()"><i class="fa-solid fa-bars"></i></button>
-        <div>Maloqueiro Piradão</div>
-    </header>
-
-    <!-- Home -->
-    <section id="telaHome" class="secao-layout ativa">
-        <button class="btn-ver-mais" onclick="cliqueVerMais()">VER EPISÓDIOS</button>
-        <div id="gridUltimosEpsContainer" style="margin-top: 20px;">
-            <div class="card-episodio-home" onclick="cliqueVerMais()">
-                <p>Últimos Episódios (Clique Aqui)</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lista -->
-    <section id="telaListaEps" class="secao-layout">
-        <button onclick="navegarPara('telaHome')">Voltar ao Início</button>
-        <h2>Lista de Episódios</h2>
-        <div id="listaDeEpisodiosContainer"></div>
-    </section>
-
     <script>
-        // Funções de Navegação
-        function abrirMenuLateral() { document.getElementById('menuLateralContainer').classList.add('aberto'); }
-        function fecharMenuLateral() { document.getElementById('menuLateralContainer').classList.remove('aberto'); }
+        // Esta lista de episódios é o que vai aparecer no seu site
+        const episdios = [
+            "Episódio 1: O Começo",
+            "Episódio 2: A Aventura",
+            "Episódio 3: O Mistério",
+            "Episódio 4: Final de Temporada"
+        ];
 
-        function navegarPara(id) {
-            document.querySelectorAll('.secao-layout').forEach(s => s.classList.remove('ativa'));
-            document.getElementById(id).classList.add('ativa');
-            fecharMenuLateral();
-        }
-
-        function cliqueVerMais() {
-            const container = document.getElementById('listaDeEpisodiosContainer');
-            container.innerHTML = "<p>Episódio 1 carregado com sucesso!</p>";
-            navegarPara('telaListaEps');
-        }
+        // Esse comando faz a lista aparecer na tela assim que o site abrir
+        const container = document.getElementById('listaDeEpisodios');
+        episdios.forEach(ep => {
+            container.innerHTML += `<div class="item-ep">${ep}</div>`;
+        });
     </script>
 </body>
 </html>
